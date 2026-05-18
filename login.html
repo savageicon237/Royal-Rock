@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Royal Rock</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f0f1a);
+            min-height: 100vh;
+            color: #fff;
+        }
+        .navbar {
+            position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px);
+            z-index: 1000; padding: 15px 5%; border-bottom: 1px solid rgba(212,175,55,0.3);
+        }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo h2 { font-size: 1.5rem; font-family: 'Playfair Display', serif; background: linear-gradient(135deg, #d4af37, #f5e6a3); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .logo p { font-size: 0.7rem; color: #d4af37; letter-spacing: 2px; }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 30px; transition: 0.3s; }
+        .nav-links a:hover { color: #d4af37; }
+        .mobile-menu { display: none; font-size: 24px; cursor: pointer; }
+        
+        .login-container {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            padding: 100px 20px 60px; position: relative; z-index: 1;
+        }
+        .login-card {
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(15px); border-radius: 30px;
+            padding: 40px; max-width: 450px; width: 100%; border: 1px solid rgba(212,175,55,0.3);
+            animation: slideUp 0.6s ease;
+        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .login-header { text-align: center; margin-bottom: 30px; }
+        .login-icon {
+            width: 80px; height: 80px; background: linear-gradient(135deg, #d4af37, #f5e6a3);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
+        }
+        .login-icon i { font-size: 2rem; color: #1a1a2e; }
+        .login-header h1 { font-size: 2rem; font-family: 'Playfair Display', serif; color: #d4af37; }
+        
+        .form-group { margin-bottom: 20px; }
+        .input-group { position: relative; }
+        .input-group i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #d4af37; }
+        .input-group input {
+            width: 100%; padding: 14px 15px 14px 45px; background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(212,175,55,0.3); border-radius: 12px; color: white; font-size: 0.9rem;
+        }
+        .input-group input:focus { outline: none; border-color: #d4af37; }
+        
+        .checkbox-group { display: flex; justify-content: space-between; align-items: center; margin: 20px 0; }
+        .checkbox-group label { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; }
+        .forgot-link { color: #d4af37; text-decoration: none; font-size: 0.85rem; }
+        
+        .btn-login {
+            width: 100%; padding: 14px; background: linear-gradient(135deg, #d4af37, #f5e6a3);
+            border: none; border-radius: 12px; color: #1a1a2e; font-weight: 700; cursor: pointer; transition: 0.3s;
+        }
+        .btn-login:hover { transform: translateY(-2px); }
+        .register-link { text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .register-link a { color: #d4af37; text-decoration: none; }
+        
+        .alert { padding: 12px 15px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .alert-error { background: rgba(239,68,68,0.2); border: 1px solid #ef4444; color: #ef4444; }
+        .alert-success { background: rgba(34,197,94,0.2); border: 1px solid #22c55e; color: #22c55e; }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu { display: block; }
+            .login-card { padding: 30px 20px; margin: 0 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo"><h2>ROYAL ROCK</h2><p>Lounge • Bar • Restaurant</p></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="events.html">Events</a>
+            <a href="register.html">Register</a>
+            <a href="login.html" style="color: #d4af37;">Login</a>
+            <a href="dashboard.html">My Account</a>
+        </div>
+        <div class="mobile-menu" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></div>
+    </div>
+</nav>
+
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <div class="login-icon"><i class="fas fa-crown"></i></div>
+            <h1>Welcome Back</h1>
+            <p>Login to your Royal Rock account</p>
+        </div>
+        <div id="alertMessage"></div>
+        <form id="loginForm">
+            <div class="form-group">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Email address" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+            </div>
+            <div class="checkbox-group">
+                <label><input type="checkbox" id="remember"> Remember me</label>
+                <a href="#" class="forgot-link">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn-login"><i class="fas fa-crown"></i> Royal Sign In</button>
+        </form>
+        <div class="register-link">Not a Royal member? <a href="register.html">Join Now</a></div>
+    </div>
+</div>
+
+<script>
+    function toggleMobileMenu() {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks.style.display === 'flex') navLinks.style.display = 'none';
+        else { navLinks.style.display = 'flex'; navLinks.style.flexDirection = 'column'; navLinks.style.position = 'absolute'; navLinks.style.top = '70px'; navLinks.style.left = '0'; navLinks.style.width = '100%'; navLinks.style.background = '#000'; navLinks.style.padding = '20px'; }
+    }
+
+    function getUsers() { return JSON.parse(localStorage.getItem('royalrock_users') || '[]'); }
+    function showAlert(message, type) {
+        const alertDiv = document.getElementById('alertMessage');
+        alertDiv.innerHTML = `<div class="alert alert-${type}"><i class="fas ${type === 'error' ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i><span>${message}</span></div>`;
+        setTimeout(() => alertDiv.innerHTML = '', 5000);
+    }
+
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const remember = document.getElementById('remember').checked;
+        const users = getUsers();
+        const user = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === btoa(password));
+        
+        if (user) {
+            if (user.status !== 'active') { showAlert('Your account is suspended. Contact support.', 'error'); return; }
+            user.lastLogin = new Date().toISOString();
+            localStorage.setItem('royalrock_users', JSON.stringify(users));
+            sessionStorage.setItem('currentUser', JSON.stringify({ id: user.id, fullname: user.fullname, email: user.email, membership: user.membership, role: user.role, points: user.points }));
+            if (remember) localStorage.setItem('rememberedUser', JSON.stringify({ email: user.email, password: password }));
+            else localStorage.removeItem('rememberedUser');
+            showAlert(`Welcome back ${user.fullname}! Redirecting...`, 'success');
+            setTimeout(() => window.location.href = 'dashboard.html', 1500);
+        } else { showAlert('Invalid email or password', 'error'); }
+    });
+    
+    const remembered = localStorage.getItem('rememberedUser');
+    if (remembered) { const user = JSON.parse(remembered); document.getElementById('email').value = user.email; document.getElementById('password').value = user.password; document.getElementById('remember').checked = true; }
+</script>
+</body>
+</html>
