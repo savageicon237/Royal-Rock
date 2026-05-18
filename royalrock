@@ -1,0 +1,2831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | Royal Rock Wellness</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-icon">👑</div>
+            <div class="logo-text">
+                <h2>ROYAL ROCK</h2>
+                <p>Wellness & Dining</p>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="restaurant.html">Restaurant</a>
+            <a href="register.html">Affiliate</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="cart.html" class="active">Cart (<span id="cartCount">0</span>)</a>
+        </div>
+        <div class="nav-buttons">
+            <a href="register.html" class="btn-affiliate">Join Affiliate</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="restaurant.html">Restaurant</a>
+        <a href="register.html">Affiliate</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="cart.html">Cart</a>
+    </div>
+</nav>
+
+<section class="page-header">
+    <div class="container">
+        <h1>Shopping <span>Cart</span></h1>
+        <p>Review your items before checkout</p>
+    </div>
+</section>
+
+<section class="cart-section">
+    <div class="container">
+        <div class="cart-container">
+            <div class="cart-items" id="cartItems">
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Your cart is empty</p>
+                    <a href="shop.html" class="btn-primary">Continue Shopping</a>
+                </div>
+            </div>
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">0 CFA</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span id="shippingCost">Calculated at checkout</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="total">0 CFA</span>
+                </div>
+                <a href="checkout.html" class="btn-primary checkout-btn">Proceed to Checkout</a>
+                <p class="payment-info"><i class="fas fa-lock"></i> Secure payment via MTN Money, Orange Money, or Card</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Royal Rock Wellness</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-icon">👑</div>
+            <div class="logo-text">
+                <h2>ROYAL ROCK</h2>
+                <p>Wellness & Dining</p>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="restaurant.html">Restaurant</a>
+            <a href="register.html">Affiliate</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        </div>
+        <div class="nav-buttons">
+            <a href="register.html" class="btn-affiliate">Join Affiliate</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="restaurant.html">Restaurant</a>
+        <a href="register.html">Affiliate</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="cart.html">Cart</a>
+    </div>
+</nav>
+
+<section class="page-header">
+    <div class="container">
+        <h1>Checkout</h1>
+        <p>Complete your purchase</p>
+    </div>
+</section>
+
+<section class="checkout-section">
+    <div class="container">
+        <div class="checkout-grid">
+            <div class="checkout-form">
+                <h3>Shipping Information</h3>
+                <form id="checkoutForm">
+                    <div class="form-row">
+                        <input type="text" id="fullName" placeholder="Full Name" required>
+                        <input type="tel" id="phone" placeholder="Phone Number" required>
+                    </div>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                    <textarea id="address" rows="3" placeholder="Delivery Address (City, Street, Landmark)" required></textarea>
+                    
+                    <h3>Shipping Calculator</h3>
+                    <div class="form-row">
+                        <select id="region" required onchange="calculateShipping()">
+                            <option value="">Select Region</option>
+                            <option value="northwest">North West (Bamenda)</option>
+                            <option value="littoral">Littoral (Douala)</option>
+                            <option value="centre">Centre (Yaoundé)</option>
+                            <option value="west">West (Bafoussam)</option>
+                            <option value="other">Other Regions</option>
+                        </select>
+                        <input type="text" id="shippingEstimate" placeholder="Shipping Cost" readonly>
+                    </div>
+                    
+                    <h3>Referral Code (Optional)</h3>
+                    <input type="text" id="referralCode" placeholder="Enter affiliate referral code">
+                    
+                    <h3>Payment Method</h3>
+                    <div class="payment-methods">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="mtn" checked>
+                            <i class="fas fa-mobile-alt"></i> MTN Mobile Money
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="orange">
+                            <i class="fas fa-mobile-alt"></i> Orange Money
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="card">
+                            <i class="fab fa-cc-visa"></i> Credit/Debit Card
+                        </label>
+                    </div>
+                    
+                    <div class="order-summary" id="checkoutSummary"></div>
+                    
+                    <button type="submit" class="btn-primary place-order">Place Order</button>
+                </form>
+                <div id="checkoutStatus"></div>
+            </div>
+            <div class="order-info">
+                <div class="info-card">
+                    <h3>Why Shop With Us?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> 100% Natural Products</li>
+                        <li><i class="fas fa-check-circle"></i> Free Delivery over 100,000 CFA</li>
+                        <li><i class="fas fa-check-circle"></i> 14-Day Money Back Guarantee</li>
+                        <li><i class="fas fa-check-circle"></i> Secure Payments</li>
+                        <li><i class="fas fa-check-circle"></i> 24/7 Customer Support</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>Refer & Earn!</h3>
+                    <p>Share your referral code and earn <strong>6,000 CFA (12%)</strong> on every purchase!</p>
+                    <a href="register.html" class="btn-outline" style="width:100%; text-align:center;">Join Affiliate Program</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affiliate Dashboard | Royal Rock</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-icon">👑</div>
+            <div class="logo-text">
+                <h2>ROYAL ROCK</h2>
+                <p>Wellness & Dining</p>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="restaurant.html">Restaurant</a>
+            <a href="register.html">Affiliate</a>
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        </div>
+        <div class="nav-buttons">
+            <a href="register.html" class="btn-affiliate">Join Affiliate</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="restaurant.html">Restaurant</a>
+        <a href="register.html">Affiliate</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="cart.html">Cart</a>
+    </div>
+</nav>
+
+<section class="dashboard-header">
+    <div class="container">
+        <h1>Affiliate Dashboard</h1>
+        <p>Welcome back, <span id="userName">Affiliate</span>!</p>
+    </div>
+</section>
+
+<section class="dashboard-stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card" data-aos="flip-left">
+                <div class="stat-icon">💰</div>
+                <div class="stat-info">
+                    <h3>Total Earnings</h3>
+                    <div class="stat-value" id="totalEarnings">0 CFA</div>
+                </div>
+            </div>
+            <div class="stat-card" data-aos="flip-left" data-aos-delay="100">
+                <div class="stat-icon">👥</div>
+                <div class="stat-info">
+                    <h3>Total Referrals</h3>
+                    <div class="stat-value" id="totalReferrals">0</div>
+                </div>
+            </div>
+            <div class="stat-card" data-aos="flip-left" data-aos-delay="200">
+                <div class="stat-icon">🛒</div>
+                <div class="stat-info">
+                    <h3>Sales</h3>
+                    <div class="stat-value" id="totalSales">0</div>
+                </div>
+            </div>
+            <div class="stat-card" data-aos="flip-left" data-aos-delay="300">
+                <div class="stat-icon">💳</div>
+                <div class="stat-info">
+                    <h3>Pending Payment</h3>
+                    <div class="stat-value" id="pendingPayment">0 CFA</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="referral-section">
+    <div class="container">
+        <div class="referral-card" data-aos="fade-up">
+            <h3>Your Referral Link</h3>
+            <div class="referral-link-box">
+                <input type="text" id="referralLink" readonly>
+                <button onclick="copyReferralLink()"><i class="fas fa-copy"></i> Copy</button>
+            </div>
+            <div class="share-buttons">
+                <button onclick="shareOnWhatsApp()" class="share-wa"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                <button onclick="shareOnFacebook()" class="share-fb"><i class="fab fa-facebook-f"></i> Facebook</button>
+                <button onclick="shareOnTwitter()" class="share-tw"><i class="fab fa-twitter"></i> Twitter</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="transactions-section">
+    <div class="container">
+        <h2>Recent Transactions</h2>
+        <div class="transactions-table">
+            <table>
+                <thead>
+                    <tr><th>Date</th><th>Referral Name</th><th>Product</th><th>Amount</th><th>Commission</th><th>Status</th></tr>
+                </thead>
+                <tbody id="transactionsList"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Rock Wellness | Natural Healing & Fine Dining</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Preloader -->
+<div class="preloader">
+    <div class="preloader-ring"></div>
+    <div class="preloader-text">ROYAL ROCK</div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-icon">👑</div>
+            <div class="logo-text">
+                <h2>ROYAL ROCK</h2>
+                <p>Wellness & Dining</p>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="restaurant.html">Restaurant</a>
+            <a href="register.html">Affiliate</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        </div>
+        <div class="nav-buttons">
+            <a href="register.html" class="btn-affiliate">Join Affiliate</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="restaurant.html">Restaurant</a>
+        <a href="register.html">Affiliate</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="cart.html">Cart</a>
+    </div>
+</nav>
+
+<!-- Hero Section with Parallax -->
+<section class="hero parallax">
+    <div class="hero-overlay"></div>
+    <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+        <div class="hero-badge">Since 2020</div>
+        <h1>Royal Rock <span>Wellness</span></h1>
+        <p>Discover natural healing products and exquisite dining experiences. Join our affiliate program and earn 12% commission on every referral!</p>
+        <div class="hero-buttons">
+            <a href="shop.html" class="btn-primary">Shop Now <i class="fas fa-arrow-right"></i></a>
+            <a href="register.html" class="btn-outline">Earn 12% <i class="fas fa-gift"></i></a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat">
+                <h3><span class="counter" data-target="5000">0</span>+</h3>
+                <p>Happy Customers</p>
+            </div>
+            <div class="stat">
+                <h3>12%</h3>
+                <p>Commission Rate</p>
+            </div>
+            <div class="stat">
+                <h3><span class="counter" data-target="24">0</span>/7</h3>
+                <p>Support</p>
+            </div>
+        </div>
+    </div>
+    <div class="hero-scroll">
+        <span>Scroll</span>
+        <i class="fas fa-arrow-down"></i>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="subtitle">Why Choose Us</span>
+            <h2>Natural Healing <span>& Premium Dining</span></h2>
+            <div class="underline"></div>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card" data-aos="flip-left" data-aos-delay="100">
+                <div class="feature-icon">🌿</div>
+                <h3>100% Natural</h3>
+                <p>All products made from natural ingredients sourced from Cameroon</p>
+            </div>
+            <div class="feature-card" data-aos="flip-left" data-aos-delay="200">
+                <div class="feature-icon">💰</div>
+                <h3>Earn 12% Commission</h3>
+                <p>Get 6,000 CFA per referral when they purchase our 50,000 CFA products</p>
+            </div>
+            <div class="feature-card" data-aos="flip-left" data-aos-delay="300">
+                <div class="feature-icon">🚚</div>
+                <h3>Free Delivery</h3>
+                <p>Free shipping on orders over 100,000 CFA in Cameroon</p>
+            </div>
+            <div class="feature-card" data-aos="flip-left" data-aos-delay="400">
+                <div class="feature-icon">⭐</div>
+                <h3>Premium Quality</h3>
+                <p>Certified organic products with proven results</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section class="how-it-works">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="subtitle">Affiliate Program</span>
+            <h2>How to <span>Earn 12%</span></h2>
+            <div class="underline"></div>
+        </div>
+        <div class="steps-grid">
+            <div class="step" data-aos="fade-right" data-aos-delay="100">
+                <div class="step-number">1</div>
+                <div class="step-icon">📝</div>
+                <h3>Register Free</h3>
+                <p>Sign up as an affiliate member - it's completely free!</p>
+            </div>
+            <div class="step" data-aos="fade-up" data-aos-delay="200">
+                <div class="step-number">2</div>
+                <div class="step-icon">🔗</div>
+                <h3>Get Your Link</h3>
+                <p>Receive your unique referral link to share</p>
+            </div>
+            <div class="step" data-aos="fade-down" data-aos-delay="300">
+                <div class="step-number">3</div>
+                <div class="step-icon">👥</div>
+                <h3>Refer Friends</h3>
+                <p>Share your link with friends and family</p>
+            </div>
+            <div class="step" data-aos="fade-left" data-aos-delay="400">
+                <div class="step-number">4</div>
+                <div class="step-icon">💰</div>
+                <h3>Earn Commission</h3>
+                <p>Get 6,000 CFA (12%) when they purchase!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products (3D Cards) -->
+<section class="featured-products">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="subtitle">Best Sellers</span>
+            <h2>Featured <span>Products</span></h2>
+            <div class="underline"></div>
+        </div>
+        <div class="products-3d-grid" id="featuredProducts"></div>
+        <div class="text-center">
+            <a href="shop.html" class="btn-primary">View All Products <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- Restaurant Preview -->
+<section class="restaurant-preview parallax">
+    <div class="preview-overlay"></div>
+    <div class="container" data-aos="zoom-in">
+        <div class="preview-content">
+            <span class="subtitle">Exquisite Dining</span>
+            <h2>Royal Rock <span>Restaurant</span></h2>
+            <p>Experience fine dining with a view. Traditional African cuisine meets international standards.</p>
+            <a href="restaurant.html" class="btn-primary">Explore Menu <i class="fas fa-utensils"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="subtitle">Testimonials</span>
+            <h2>What Our <span>Customers Say</span></h2>
+            <div class="underline"></div>
+        </div>
+        <div class="testimonials-slider" id="testimonialsSlider"></div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta">
+    <div class="container" data-aos="flip-up">
+        <h2>Start Earning 12% Commission Today!</h2>
+        <p>Join our affiliate program for free and earn 6,000 CFA per sale</p>
+        <div class="cta-buttons">
+            <a href="register.html" class="btn-primary">Register as Affiliate</a>
+            <a href="shop.html" class="btn-outline">Shop Products</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <span>👑</span>
+                    <h3>ROYAL ROCK</h3>
+                </div>
+                <p>Natural wellness products and fine dining in the heart of Cameroon. Join our affiliate family and grow with us.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="restaurant.html">Restaurant</a>
+                <a href="register.html">Affiliate Program</a>
+                <a href="dashboard.html">Dashboard</a>
+            </div>
+            <div class="footer-links">
+                <h4>Products</h4>
+                <a href="shop.html">Wellness Products</a>
+                <a href="shop.html">Herbal Supplements</a>
+                <a href="restaurant.html">Restaurant Menu</a>
+                <a href="shop.html">Gift Cards</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-phone"></i> +237 6XX XXX XXX</p>
+                <p><i class="fas fa-envelope"></i> info@royalrock.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Bamenda, Cameroon</p>
+                <p><i class="fas fa-clock"></i> Mon-Sat: 8am - 8pm</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Royal Rock Wellness. Affiliate Commission: 12% (6,000 CFA per 50,000 CFA sale)</p>
+        </div>
+    </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/237600000000" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+    <span>Chat with us</span>
+</a>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Affiliate Program | Royal Rock</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-icon">👑</div>
+            <div class="logo-text">
+                <h2>ROYAL ROCK</h2>
+                <p>Wellness & Dining</p>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="restaurant.html">Restaurant</a>
+            <a href="register.html" class="active">Affiliate</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        </div>
+        <div class="nav-buttons">
+            <a href="register.html" class="btn-affiliate">Join Affiliate</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="restaurant.html">Restaurant</a>
+        <a href="register.html">Affiliate</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="cart.html">Cart</a>
+    </div>
+</nav>
+
+<section class="register-hero">
+    <div class="container">
+        <h1>Become an <span>Affiliate</span></h1>
+        <p>Earn 12% commission on every sale - 6,000 CFA per 50,000 CFA product!</p>
+    </div>
+</section>
+
+<section class="register-form-section">
+    <div class="container">
+        <div class="register-grid">
+            <div class="register-info" data-aos="fade-right">
+                <div class="commission-card">
+                    <h3>💰 How It Works</h3>
+                    <div class="commission-steps">
+                        <div class="commission-step">
+                            <div class="step-icon">1</div>
+                            <div><strong>Register for free</strong><br>No fees, no hidden costs</div>
+                        </div>
+                        <div class="commission-step">
+                            <div class="step-icon">2</div>
+                            <div><strong>Get your unique referral link</strong><br>Share with friends & family</div>
+                        </div>
+                        <div class="commission-step">
+                            <div class="step-icon">3</div>
+                            <div><strong>Earn 6,000 CFA per sale</strong><br>When they buy our 50,000 CFA product</div>
+                        </div>
+                        <div class="commission-step">
+                            <div class="step-icon">4</div>
+                            <div><strong>Withdraw your earnings</strong><br>Via Mobile Money or Bank Transfer</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="calculator-card">
+                    <h3>📊 Earnings Calculator</h3>
+                    <div class="calculator">
+                        <label>Number of Referrals</label>
+                        <input type="number" id="referralCount" value="1" min="1">
+                        <div class="calculator-result">
+                            <p>Your Earnings: <span id="earningResult">6,000</span> CFA</p>
+                            <p>Company Earnings: <span id="companyEarning">44,000</span> CFA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="register-form" data-aos="fade-left">
+                <h2>Register Now - Free!</h2>
+                <form id="registerForm">
+                    <div class="form-row">
+                        <input type="text" id="fullName" placeholder="Full Name" required>
+                        <input type="text" id="phoneNumber" placeholder="Phone Number" required>
+                    </div>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                    <input type="text" id="referralCode" placeholder="Referral Code (if any)">
+                    <select id="paymentMethod">
+                        <option value="mtn">MTN Mobile Money</option>
+                        <option value="orange">Orange Money</option>
+                        <option value="bank">Bank Transfer</option>
+                    </select>
+                    <div class="terms">
+                        <input type="checkbox" id="terms" required>
+                        <label>I agree to the terms and conditions</label>
+                    </div>
+                    <button type="submit" class="btn-primary">Register as Affiliate <i class="fas fa-arrow-right"></i></button>
+                </form>
+                <div id="registerStatus"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Rock Restaurant | Fine Dining</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-icon">👑</div>
+            <div class="logo-text">
+                <h2>ROYAL ROCK</h2>
+                <p>Wellness & Dining</p>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="restaurant.html" class="active">Restaurant</a>
+            <a href="register.html">Affiliate</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        </div>
+        <div class="nav-buttons">
+            <a href="register.html" class="btn-affiliate">Join Affiliate</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="restaurant.html">Restaurant</a>
+        <a href="register.html">Affiliate</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="cart.html">Cart</a>
+    </div>
+</nav>
+
+<section class="restaurant-hero parallax">
+    <div class="hero-overlay"></div>
+    <div class="container" data-aos="zoom-in">
+        <h1>Royal Rock <span>Restaurant</span></h1>
+        <p>Experience fine dining with panoramic views</p>
+    </div>
+</section>
+
+<!-- Menu Categories -->
+<section class="menu-categories">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="subtitle">Our Menu</span>
+            <h2>Exquisite <span>Dishes</span></h2>
+            <div class="underline"></div>
+        </div>
+        <div class="menu-tabs">
+            <button class="menu-tab active" data-category="all">All</button>
+            <button class="menu-tab" data-category="appetizers">Appetizers</button>
+            <button class="menu-tab" data-category="main">Main Courses</button>
+            <button class="menu-tab" data-category="desserts">Desserts</button>
+            <button class="menu-tab" data-category="drinks">Drinks</button>
+        </div>
+        <div class="menu-grid" id="menuGrid"></div>
+    </div>
+</section>
+
+<!-- Restaurant Info -->
+<section class="restaurant-info">
+    <div class="container">
+        <div class="info-grid">
+            <div class="info-card" data-aos="fade-right">
+                <i class="fas fa-clock"></i>
+                <h3>Opening Hours</h3>
+                <p>Monday - Friday: 11am - 10pm</p>
+                <p>Saturday - Sunday: 10am - 11pm</p>
+            </div>
+            <div class="info-card" data-aos="fade-up">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Location</h3>
+                <p>Upstation, Tar GRA</p>
+                <p>Bamenda, Cameroon</p>
+            </div>
+            <div class="info-card" data-aos="fade-left">
+                <i class="fas fa-phone"></i>
+                <h3>Reservations</h3>
+                <p>+237 6XX XXX XXX</p>
+                <p>reservations@royalrock.com</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery -->
+<section class="gallery">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="subtitle">Gallery</span>
+            <h2>Our <span>Restaurant</span></h2>
+            <div class="underline"></div>
+        </div>
+        <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+// ============ EMAILJS CONFIGURATION ============
+const EMAILJS_PUBLIC_KEY = "WDudZHbWJQx9BDzCk";
+const EMAILJS_SERVICE_ID = "service_y156bsg";
+const EMAILJS_TEMPLATE_ID = "template_a8c4ly1";
+
+if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== "WDudZHbWJQx9BDzCk") {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+}
+
+// ============ PRODUCT DATABASE ============
+const products = [
+    { 
+        id: 1, 
+        name: "Pile", 
+        price: 50000, 
+        category: "herbal",
+        image:"web/1.jpg " ,
+        commission: 6000 // 12% of 50000
+    },
+     { 
+        id: 2, 
+        name: "Nefropatia", 
+        price: 50000, 
+        category: "herbal",
+        image:"web/2.jpg " ,
+        commission: 6000 // 12% of 50000
+    }, { 
+        id: 3, 
+        name: "Immunity Booster", 
+        price: 50000, 
+        category: "herbal",
+        image:"web/3.jpg " ,
+        commission: 6000 // 12% of 50000
+    }, { 
+        id: 4, 
+        name: "Tooth Care Pack", 
+        price: 50000, 
+        category: "herbal",
+        image:"web/4.jpg " ,
+        commission: 6000 // 12% of 50000
+    }, { 
+        id: 5, 
+        name: "Air Force One", 
+        price: 50000, 
+        category: "herbal",
+        image:"web/5.jpg " ,
+        commission: 6000 // 12% of 50000
+    },
+];
+
+// ============ RESTAURANT MENU ============
+const menuItems = [
+    { id: 1, name: "Grilled Fish Special", price: 5000, category: "main", image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=300", description: "Fresh fish grilled with local spices" },
+    { id: 2, name: "Pepper Soup", price: 3000, category: "appetizers", image: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=300", description: "Spicy traditional pepper soup" },
+    { id: 3, name: "Jollof Rice", price: 3500, category: "main", image: "https://images.unsplash.com/photo-1546074177-ffdda98d214f?w=300", description: "Classic West African Jollof" },
+    { id: 4, name: "Fruit Salad", price: 2500, category: "desserts", image: "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=300", description: "Fresh seasonal fruits" },
+    { id: 5, name: "Mango Juice", price: 1500, category: "drinks", image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=300", description: "Freshly squeezed mango juice" },
+    { id: 6, name: "Fried Plantains", price: 2000, category: "appetizers", image: "https://images.unsplash.com/photo-1597534458220-9fb4969f2df5?w=300", description: "Crispy ripe plantains" }
+];
+
+// ============ CART FUNCTIONS ============
+function getCart() {
+    return JSON.parse(localStorage.getItem('royalCart') || '[]');
+}
+
+function saveCart(cart) {
+    localStorage.setItem('royalCart', JSON.stringify(cart));
+    updateCartCount();
+    displayCartItems();
+}
+
+function updateCartCount() {
+    const cart = getCart();
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.querySelectorAll('#cartCount').forEach(el => {
+        if (el) el.innerText = count;
+    });
+}
+
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+    
+    let cart = getCart();
+    const existing = cart.find(item => item.id === productId);
+    
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: 1,
+            commission: product.commission
+        });
+    }
+    
+    saveCart(cart);
+    showNotification(`${product.name} added to cart!`);
+}
+
+function addRestaurantToCart(itemId) {
+    const item = menuItems.find(i => i.id === itemId);
+    if (!item) return;
+    
+    let cart = getCart();
+    const existing = cart.find(i => i.id === itemId && i.type === 'restaurant');
+    
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            image: item.image,
+            quantity: 1,
+            type: 'restaurant',
+            commission: 0
+        });
+    }
+    
+    saveCart(cart);
+    showNotification(`${item.name} added to cart!`);
+}
+
+function removeFromCart(productId, type) {
+    let cart = getCart();
+    cart = cart.filter(item => !(item.id === productId && (item.type === type || (!item.type && !type))));
+    saveCart(cart);
+}
+
+function updateQuantity(productId, change, type) {
+    let cart = getCart();
+    const item = cart.find(item => item.id === productId && (item.type === type || (!item.type && !type)));
+    
+    if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+            removeFromCart(productId, type);
+        } else {
+            saveCart(cart);
+        }
+    }
+}
+
+function getCartTotal() {
+    const cart = getCart();
+    return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+}
+
+function displayCartItems() {
+    const container = document.getElementById('cartItems');
+    if (!container) return;
+    
+    const cart = getCart();
+    const subtotal = getCartTotal();
+    
+    if (document.getElementById('subtotal')) {
+        document.getElementById('subtotal').innerText = `${subtotal.toLocaleString()} CFA`;
+        document.getElementById('total').innerText = `${subtotal.toLocaleString()} CFA`;
+    }
+    
+    if (cart.length === 0) {
+        container.innerHTML = `
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+                <a href="shop.html" class="btn-primary">Continue Shopping</a>
+            </div>
+        `;
+        return;
+    }
+    
+    container.innerHTML = cart.map(item => `
+        <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+            <div>
+                <h4>${item.name}</h4>
+                <p>${item.price.toLocaleString()} CFA</p>
+            </div>
+            <div class="cart-item-quantity">
+                <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1, '${item.type || ''}')">-</button>
+                <span>${item.quantity}</span>
+                <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1, '${item.type || ''}')">+</button>
+            </div>
+            <div>
+                <span>${(item.price * item.quantity).toLocaleString()} CFA</span>
+                <span class="remove-item" onclick="removeFromCart(${item.id}, '${item.type || ''}')"><i class="fas fa-trash"></i></span>
+            </div>
+        </div>
+    `).join('');
+}
+
+// ============ DISPLAY PRODUCTS ============
+function displayProducts(productsToShow) {
+    const container = document.getElementById('productsGrid');
+    if (!container) return;
+    
+    container.innerHTML = productsToShow.map(product => `
+        <div class="product-3d-card" data-aos="flip-up">
+            <div style="position: relative;">
+                <img src="${product.image}" alt="${product.name}" class="product-image">
+                <div class="product-badge">🌿 Natural</div>
+                <div class="affiliate-badge">💰 Earn 6,000 CFA</div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">${product.name}</h3>
+                <div class="product-price">${product.price.toLocaleString()} CFA</div>
+                <div class="product-ingredients">
+                    <strong>🌱 Ingredients:</strong><br>
+                    ${product.ingredients.join(' • ')}
+                </div>
+                <div class="product-diseases">
+                    ${product.diseases.map(d => `<span class="disease-tag">🩺 ${d}</span>`).join('')}
+                </div>
+                <p style="font-size: 0.8rem; color: #aaa; margin: 10px 0;">${product.description}</p>
+                <button class="btn-primary" style="width: 100%;" onclick="addToCart(${product.id})">
+                    Add to Cart <i class="fas fa-shopping-cart"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function displayFeaturedProducts() {
+    const container = document.getElementById('featuredProducts');
+    if (!container) return;
+    
+    const featured = products.slice(0, 3);
+    container.innerHTML = featured.map(product => `
+        <div class="product-3d-card" data-aos="flip-up">
+            <div style="position: relative;">
+                <img src="${product.image}" alt="${product.name}" class="product-image">
+                <div class="product-badge">⭐ Best Seller</div>
+                <div class="affiliate-badge">💰 Earn 6,000 CFA</div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">${product.name}</h3>
+                <div class="product-price">${product.price.toLocaleString()} CFA</div>
+                <div class="product-ingredients">
+                    <strong>🌱 Ingredients:</strong><br>
+                    ${product.ingredients.slice(0, 2).join(' • ')}...
+                </div>
+                <button class="btn-primary" style="width: 100%;" onclick="addToCart(${product.id})">
+                    Add to Cart <i class="fas fa-shopping-cart"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function displayMenu(category = 'all') {
+    const container = document.getElementById('menuGrid');
+    if (!container) return;
+    
+    const filtered = category === 'all' ? menuItems : menuItems.filter(item => item.category === category);
+    
+    container.innerHTML = filtered.map(item => `
+        <div class="menu-card" data-aos="fade-up">
+            <img src="${item.image}" alt="${item.name}">
+            <div class="menu-card-info">
+                <h3>${item.name}</h3>
+                <p style="color: #aaa; font-size: 0.8rem;">${item.description}</p>
+                <div class="menu-price">${item.price.toLocaleString()} CFA</div>
+                <button class="btn-outline" style="width: 100%; margin-top: 10px;" onclick="addRestaurantToCart(${item.id})">
+                    Add to Order <i class="fas fa-utensils"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// ============ AFFILIATE SYSTEM ============
+function registerAffiliate(userData) {
+    let affiliates = JSON.parse(localStorage.getItem('royalAffiliates') || '[]');
+    
+    // Generate unique referral code
+    const referralCode = 'RR' + Math.random().toString(36).substring(2, 8).toUpperCase();
+    
+    const newAffiliate = {
+        ...userData,
+        referralCode: referralCode,
+        earnings: 0,
+        referrals: [],
+        totalSales: 0,
+        joinDate: new Date().toISOString(),
+        pendingPayment: 0
+    };
+    
+    // Handle referral from existing affiliate
+    if (userData.referredBy) {
+        const referrer = affiliates.find(a => a.referralCode === userData.referredBy);
+        if (referrer) {
+            referrer.referrals.push({
+                name: userData.fullName,
+                date: new Date().toISOString(),
+                status: 'pending'
+            });
+        }
+    }
+    
+    affiliates.push(newAffiliate);
+    localStorage.setItem('royalAffiliates', JSON.stringify(affiliates));
+    
+    // Store current affiliate in session
+    sessionStorage.setItem('currentAffiliate', JSON.stringify(newAffiliate));
+    
+    return { success: true, referralCode };
+}
+
+function processAffiliateCommission(referralCode, saleAmount) {
+    let affiliates = JSON.parse(localStorage.getItem('royalAffiliates') || '[]');
+    const affiliate = affiliates.find(a => a.referralCode === referralCode);
+    
+    if (affiliate) {
+        const commission = saleAmount * 0.12; // 12% commission
+        affiliate.earnings += commission;
+        affiliate.totalSales++;
+        affiliate.pendingPayment += commission;
+        
+        // Update referral status
+        const pendingReferral = affiliate.referrals.find(r => r.status === 'pending');
+        if (pendingReferral) {
+            pendingReferral.status = 'completed';
+            pendingReferral.commission = commission;
+            pendingReferral.saleAmount = saleAmount;
+        }
+        
+        localStorage.setItem('royalAffiliates', JSON.stringify(affiliates));
+        
+        // Send email notification to affiliate
+        if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY_HERE") {
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+                to_email: affiliate.email,
+                subject: "You've earned a commission!",
+                message: `Congratulations! You earned ${commission.toLocaleString()} CFA from a referral sale.`
+            });
+        }
+        
+        // Send email to admin (lilicon2331@gmail.com)
+        if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY_HERE") {
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+                to_email: "lilicon2331@gmail.com",
+                subject: "New Affiliate Commission",
+                message: `Affiliate ${affiliate.fullName} earned ${commission.toLocaleString()} CFA from a referral sale. Total earnings: ${affiliate.earnings.toLocaleString()} CFA`
+            });
+        }
+        
+        return commission;
+    }
+    return 0;
+}
+
+function loadAffiliateDashboard() {
+    const currentAffiliate = JSON.parse(sessionStorage.getItem('currentAffiliate'));
+    if (!currentAffiliate) {
+        if (window.location.pathname.includes('dashboard.html')) {
+            window.location.href = 'register.html';
+        }
+        return;
+    }
+    
+    document.getElementById('userName').innerText = currentAffiliate.fullName;
+    document.getElementById('totalEarnings').innerText = currentAffiliate.earnings.toLocaleString() + ' CFA';
+    document.getElementById('totalReferrals').innerText = currentAffiliate.referrals.length;
+    document.getElementById('totalSales').innerText = currentAffiliate.totalSales;
+    document.getElementById('pendingPayment').innerText = currentAffiliate.pendingPayment.toLocaleString() + ' CFA';
+    document.getElementById('referralLink').value = `${window.location.origin}/shop.html?ref=${currentAffiliate.referralCode}`;
+    
+    const transactionsList = document.getElementById('transactionsList');
+    if (transactionsList) {
+        transactionsList.innerHTML = currentAffiliate.referrals.map(ref => `
+            <tr>
+                <td>${new Date(ref.date).toLocaleDateString()}</td>
+                <td>${ref.name}</td>
+                <td>Royal Rock Product</td>
+                <td>50,000 CFA</td>
+                <td>${ref.commission ? ref.commission.toLocaleString() + ' CFA' : 'Pending'}</td>
+                <td><span style="color: ${ref.status === 'completed' ? '#28a745' : '#ffc107'}">${ref.status}</span></td>
+            </tr>
+        `).join('');
+    }
+}
+
+function copyReferralLink() {
+    const linkInput = document.getElementById('referralLink');
+    linkInput.select();
+    document.execCommand('copy');
+    showNotification('Referral link copied!');
+}
+
+function shareOnWhatsApp() {
+    const link = document.getElementById('referralLink').value;
+    window.open(`https://wa.me/?text=Check out Royal Rock Wellness! Use my referral link: ${link}`, '_blank');
+}
+
+function shareOnFacebook() {
+    const link = document.getElementById('referralLink').value;
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`, '_blank');
+}
+
+function shareOnTwitter() {
+    const link = document.getElementById('referralLink').value;
+    window.open(`https://twitter.com/intent/tweet?text=Check out Royal Rock Wellness! Use my referral link: ${link}`, '_blank');
+}
+
+// ============ SHIPPING CALCULATOR ============
+const shippingRates = {
+    northwest: 1500,
+    littoral: 2500,
+    centre: 2500,
+    west: 2000,
+    other: 5000
+};
+
+function calculateShipping() {
+    const region = document.getElementById('region')?.value;
+    const shippingInput = document.getElementById('shippingEstimate');
+    
+    if (region && shippingRates[region]) {
+        shippingInput.value = `${shippingRates[region].toLocaleString()} CFA`;
+    } else {
+        shippingInput.value = '';
+    }
+}
+
+// ============ ORDER PROCESSING ============
+async function processOrder(orderData) {
+    const cart = getCart();
+    const subtotal = getCartTotal();
+    const shipping = shippingRates[orderData.region] || 0;
+    const total = subtotal + shipping;
+    
+    // Check for affiliate referral
+    let affiliateCommission = 0;
+    if (orderData.referralCode) {
+        affiliateCommission = processAffiliateCommission(orderData.referralCode, subtotal);
+    }
+    
+    const ownerEarnings = total - affiliateCommission;
+    
+    const order = {
+        orderId: 'RR' + Date.now(),
+        customer: orderData,
+        items: cart,
+        subtotal: subtotal,
+        shipping: shipping,
+        total: total,
+        affiliateCommission: affiliateCommission,
+        ownerEarnings: ownerEarnings,
+        status: 'pending',
+        date: new Date().toISOString()
+    };
+    
+    // Save order
+    let orders = JSON.parse(localStorage.getItem('royalOrders') || '[]');
+    orders.push(order);
+    localStorage.setItem('royalOrders', JSON.stringify(orders));
+    
+    // Clear cart
+    localStorage.setItem('royalCart', '[]');
+    updateCartCount();
+    
+    // Send email to admin (lilicon2331@gmail.com)
+    if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY_HERE") {
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+            to_email: "lilicon2331@gmail.com",
+            subject: `New Order: ${order.orderId}`,
+            message: `
+                New Order Details:
+                Order ID: ${order.orderId}
+                Customer: ${orderData.fullName}
+                Phone: ${orderData.phone}
+                Address: ${orderData.address}
+                Items: ${order.items.map(i => `${i.name} x${i.quantity}`).join(', ')}
+                Subtotal: ${subtotal.toLocaleString()} CFA
+                Shipping: ${shipping.toLocaleString()} CFA
+                Total: ${total.toLocaleString()} CFA
+                Affiliate Commission (12%): ${affiliateCommission.toLocaleString()} CFA
+                Your Earnings: ${ownerEarnings.toLocaleString()} CFA
+            `
+        });
+    }
+    
+    return order;
+}
+
+// ============ FORM HANDLERS ============
+function setupRegisterForm() {
+    const form = document.getElementById('registerForm');
+    if (!form) return;
+    
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = {
+            fullName: document.getElementById('fullName').value,
+            phoneNumber: document.getElementById('phoneNumber').value,
+            email: document.getElementById('email').value,
+            referralCode: document.getElementById('referralCode').value,
+            paymentMethod: document.getElementById('paymentMethod').value,
+            referredBy: document.getElementById('referralCode').value
+        };
+        
+        const result = registerAffiliate(formData);
+        const statusDiv = document.getElementById('registerStatus');
+        
+        if (result.success) {
+            statusDiv.innerHTML = `<div style="color: #28a745; padding: 10px; background: rgba(40,167,69,0.1); border-radius: 10px;">
+                ✅ Registration successful! Your referral code: <strong>${result.referralCode}</strong><br>
+                Redirecting to dashboard...
+            </div>`;
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 2000);
+        }
+    });
+}
+
+function setupCheckoutForm() {
+    const form = document.getElementById('checkoutForm');
+    if (!form) return;
+    
+    const subtotal = getCartTotal();
+    const checkoutSummary = document.getElementById('checkoutSummary');
+    if (checkoutSummary) {
+        checkoutSummary.innerHTML = `
+            <h3>Order Summary</h3>
+            <div class="summary-row"><span>Subtotal:</span><span>${subtotal.toLocaleString()} CFA</span></div>
+            <div class="summary-row"><span>Shipping:</span><span id="summaryShipping">0 CFA</span></div>
+            <div class="summary-row total"><span>Total:</span><span id="summaryTotal">${subtotal.toLocaleString()} CFA</span></div>
+        `;
+    }
+    
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = form.querySelector('.place-order');
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+        submitBtn.disabled = true;
+        
+        const orderData = {
+            fullName: document.getElementById('fullName').value,
+            phone: document.getElementById('phone').value,
+            email: document.getElementById('email').value,
+            address: document.getElementById('address').value,
+            region: document.getElementById('region').value,
+            payment: document.querySelector('input[name="payment"]:checked').value,
+            referralCode: document.getElementById('referralCode').value
+        };
+        
+        const order = await processOrder(orderData);
+        const statusDiv = document.getElementById('checkoutStatus');
+        
+        statusDiv.innerHTML = `<div style="color: #28a745; padding: 10px; background: rgba(40,167,69,0.1); border-radius: 10px;">
+            ✅ Order placed successfully! Order ID: ${order.orderId}<br>
+            You will receive a confirmation email shortly.
+        </div>`;
+        
+        setTimeout(() => {
+            window.location.href = 'shop.html';
+        }, 3000);
+    });
+    
+    const regionSelect = document.getElementById('region');
+    if (regionSelect) {
+        regionSelect.addEventListener('change', () => {
+            const shipping = shippingRates[regionSelect.value] || 0;
+            const total = subtotal + shipping;
+            document.getElementById('summaryShipping').innerHTML = `${shipping.toLocaleString()} CFA`;
+            document.getElementById('summaryTotal').innerHTML = `${total.toLocaleString()} CFA`;
+        });
+    }
+}
+
+// ============ FILTERS & SEARCH ============
+function setupFilters() {
+    const searchInput = document.getElementById('searchProducts');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const sortFilter = document.getElementById('sortFilter');
+    
+    function filterAndDisplay() {
+        let filtered = [...products];
+        const searchTerm = searchInput?.value.toLowerCase() || '';
+        const category = categoryFilter?.value || 'all';
+        
+        if (searchTerm) {
+            filtered = filtered.filter(p => 
+                p.name.toLowerCase().includes(searchTerm) || 
+                p.diseases.some(d => d.toLowerCase().includes(searchTerm)) ||
+                p.ingredients.some(i => i.toLowerCase().includes(searchTerm))
+            );
+        }
+        
+        if (category !== 'all') {
+            filtered = filtered.filter(p => p.category === category);
+        }
+        
+        const sort = sortFilter?.value || 'default';
+        if (sort === 'price-low') {
+            filtered.sort((a, b) => a.price - b.price);
+        } else if (sort === 'price-high') {
+            filtered.sort((a, b) => b.price - a.price);
+        }
+        
+        displayProducts(filtered);
+        
+        const noResults = document.getElementById('noResults');
+        if (noResults) {
+            noResults.style.display = filtered.length === 0 ? 'block' : 'none';
+        }
+    }
+    
+    searchInput?.addEventListener('input', filterAndDisplay);
+    categoryFilter?.addEventListener('change', filterAndDisplay);
+    sortFilter?.addEventListener('change', filterAndDisplay);
+    
+    filterAndDisplay();
+}
+
+// ============ NOTIFICATION ============
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        bottom: 100px;
+        right: 20px;
+        background: linear-gradient(135deg, var(--secondary), var(--primary));
+        color: white;
+        padding: 12px 20px;
+        border-radius: 10px;
+        z-index: 10000;
+        animation: slideIn 0.3s ease;
+        font-weight: 500;
+    `;
+    notification.innerHTML = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// Add animation styles
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
+
+// ============ MOBILE MENU ============
+function toggleMenu() {
+    const menu = document.getElementById('mobileNav');
+    if (menu) menu.classList.toggle('show');
+}
+
+// ============ COUNTER ANIMATION ============
+function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+        const target = parseInt(counter.dataset.target);
+        let current = 0;
+        const increment = target / 50;
+        const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+                counter.innerText = Math.ceil(current);
+                setTimeout(updateCounter, 40);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        updateCounter();
+    });
+}
+
+// ============ INITIALIZE ============
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+    
+    // Remove preloader
+    setTimeout(() => {
+        const preloader = document.querySelector('.preloader');
+        if (preloader) {
+            preloader.style.opacity = '0';
+            setTimeout(() => preloader.remove(), 500);
+        }
+    }, 1500);
+    
+    // Initialize components based on page
+    updateCartCount();
+    displayCartItems();
+    displayFeaturedProducts();
+    setupRegisterForm();
+    setupCheckoutForm();
+    setupFilters();
+    loadAffiliateDashboard();
+    animateCounters();
+    
+    // Restaurant menu tabs
+    const menuTabs = document.querySelectorAll('.menu-tab');
+    if (menuTabs.length) {
+        displayMenu('all');
+        menuTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                menuTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                displayMenu(tab.dataset.category);
+            });
+        });
+    }
+    
+    // URL parameter for affiliate referral
+    const urlParams = new URLSearchParams(window.location.search);
+    const refCode = urlParams.get('ref');
+    if (refCode) {
+        localStorage.setItem('affiliateReferral', refCode);
+        showNotification(`You were referred by an affiliate! 🎉 Use code ${refCode} at checkout.`);
+    }
+    
+    const savedRef = localStorage.getItem('affiliateReferral');
+    const referralInput = document.getElementById('referralCode');
+    if (savedRef && referralInput) {
+        referralInput.value = savedRef;
+    }
+});
+
+// ============ PRELOADER REMOVAL ============
+window.addEventListener('load', () => {
+    const preloader = document.querySelector('.preloader');
+    if (preloader) {
+        setTimeout(() => {
+            preloader.style.opacity = '0';
+            setTimeout(() => preloader.remove(), 500);
+        }, 500);
+    }
+});
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Royal Rock Wellness</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-icon">👑</div>
+            <div class="logo-text">
+                <h2>ROYAL ROCK</h2>
+                <p>Wellness & Dining</p>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html" class="active">Shop</a>
+            <a href="restaurant.html">Restaurant</a>
+            <a href="register.html">Affiliate</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        </div>
+        <div class="nav-buttons">
+            <a href="register.html" class="btn-affiliate">Join Affiliate</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="restaurant.html">Restaurant</a>
+        <a href="register.html">Affiliate</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="cart.html">Cart</a>
+    </div>
+</nav>
+
+<section class="page-header parallax">
+    <div class="container">
+        <h1>Our <span>Wellness Products</span></h1>
+        <p>Natural healing solutions for a healthier you</p>
+    </div>
+</section>
+
+<!-- Filters -->
+<section class="filters">
+    <div class="container">
+        <div class="filter-row">
+            <div class="filter-group">
+                <input type="text" id="searchProducts" placeholder="🔍 Search products..." class="filter-input">
+            </div>
+            <div class="filter-group">
+                <select id="categoryFilter" class="filter-select">
+                    <option value="all">All Categories</option>
+                    <option value="herbal">Herbal Supplements</option>
+                    <option value="wellness">Wellness</option>
+                    <option value="detox">Detox</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <select id="sortFilter" class="filter-select">
+                    <option value="default">Sort by: Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Grid -->
+<section class="products-section">
+    <div class="container">
+        <div class="products-3d-grid" id="productsGrid"></div>
+        <div id="noResults" class="no-results" style="display: none;">
+            <i class="fas fa-search"></i>
+            <h3>No products found</h3>
+            <p>Try adjusting your search</p>
+        </div>
+    </div>
+</section>
+
+<!-- Affiliate Banner -->
+<section class="affiliate-banner">
+    <div class="container">
+        <div class="banner-content">
+            <div class="banner-text">
+                <span class="banner-badge">💎 Affiliate Opportunity</span>
+                <h2>Earn 12% Commission</h2>
+                <p>Share your referral link and earn 6,000 CFA every time someone buys our 50,000 CFA product!</p>
+                <a href="register.html" class="btn-primary">Join for Free <i class="fas fa-rocket"></i></a>
+            </div>
+            <div class="banner-stats">
+                <div class="banner-stat">
+                    <h3>6,000 CFA</h3>
+                    <p>Per Referral</p>
+                </div>
+                <div class="banner-stat">
+                    <h3>12%</h3>
+                    <p>Commission</p>
+                </div>
+                <div class="banner-stat">
+                    <h3>Unlimited</h3>
+                    <p>Earnings</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #8B4513;
+    --primary-dark: #5C2E0B;
+    --primary-light: #D2691E;
+    --secondary: #DAA520;
+    --gold: #FFD700;
+    --dark: #1a1a2e;
+    --light: #f8f9fa;
+    --gray: #6c757d;
+    --success: #28a745;
+    --danger: #dc3545;
+    --warning: #ffc107;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--dark);
+    color: var(--light);
+    overflow-x: hidden;
+}
+
+/* Preloader */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    transition: opacity 0.5s;
+}
+
+.preloader-ring {
+    width: 80px;
+    height: 80px;
+    border: 3px solid rgba(218, 165, 32, 0.3);
+    border-top-color: var(--secondary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.preloader-text {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+    color: var(--secondary);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 10px; }
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 15px 5%;
+    border-bottom: 1px solid rgba(218, 165, 32, 0.3);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    font-size: 2rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.logo-text h2 {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+.logo-text p {
+    font-size: 0.7rem;
+    color: var(--secondary);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--light);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--secondary);
+}
+
+.btn-affiliate {
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    padding: 10px 20px;
+    border-radius: 50px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-affiliate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(218, 165, 32, 0.4);
+}
+
+.mobile-menu {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: var(--dark);
+    padding: 20px;
+}
+
+.mobile-nav.show {
+    display: flex;
+}
+
+/* Buttons */
+.btn-primary {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(218, 165, 32, 0.3);
+}
+
+.btn-outline {
+    display: inline-block;
+    padding: 12px 30px;
+    background: transparent;
+    border: 2px solid var(--secondary);
+    color: var(--secondary);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-outline:hover {
+    background: var(--secondary);
+    color: var(--dark);
+    transform: translateY(-3px);
+}
+
+/* Hero Section with Parallax */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background: url('https://images.unsplash.com/photo-1516383740770-fbcc5ccbece0?w=1920') center/cover fixed;
+}
+
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero-overlay, .preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(218, 165, 32, 0.2);
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: var(--secondary);
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #ccc;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.stat h3 {
+    font-size: 2rem;
+    color: var(--secondary);
+}
+
+.hero-scroll {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(10px); }
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Section Header */
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.subtitle {
+    display: inline-block;
+    background: rgba(218, 165, 32, 0.2);
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    color: var(--secondary);
+    margin-bottom: 15px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+}
+
+.section-header h2 span {
+    color: var(--secondary);
+}
+
+.underline {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    margin: 15px auto 0;
+    border-radius: 3px;
+}
+
+/* Features */
+.features {
+    padding: 80px 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: rgba(255,255,255,0.05);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--secondary);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+/* How It Works */
+.how-it-works {
+    padding: 80px 0;
+    background: rgba(0,0,0,0.3);
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.step {
+    text-align: center;
+    position: relative;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: var(--secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-weight: bold;
+}
+
+.step-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+/* 3D Products Grid */
+.products-3d-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 40px;
+    perspective: 1000px;
+}
+
+.product-3d-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.product-3d-card:hover {
+    transform: translateY(-15px) rotateX(5deg);
+    box-shadow: 0 30px 40px rgba(0,0,0,0.3);
+}
+
+.product-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.product-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--secondary);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 1.3rem;
+    color: var(--secondary);
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.product-ingredients {
+    font-size: 0.8rem;
+    color: #ccc;
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+}
+
+.product-diseases {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.disease-tag {
+    background: rgba(218, 165, 32, 0.2);
+    padding: 3px 10px;
+    border-radius: 15px;
+    font-size: 0.7rem;
+}
+
+.affiliate-badge {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: var(--success);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+}
+
+/* Restaurant Preview */
+.restaurant-preview {
+    padding: 120px 0;
+    background: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920') center/cover fixed;
+    position: relative;
+}
+
+.preview-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.preview-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.preview-content h2 span {
+    color: var(--secondary);
+}
+
+/* Menu Tabs */
+.menu-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.menu-tab {
+    padding: 10px 25px;
+    background: transparent;
+    border: 2px solid var(--secondary);
+    color: var(--secondary);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu-tab.active, .menu-tab:hover {
+    background: var(--secondary);
+    color: var(--dark);
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.menu-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+}
+
+.menu-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.menu-card-info {
+    padding: 20px;
+}
+
+.menu-price {
+    color: var(--secondary);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Cart Section */
+.cart-section, .checkout-section {
+    padding: 80px 0;
+}
+
+.cart-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+
+.cart-items {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 80px 2fr 1fr auto;
+    gap: 15px;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-btn {
+    width: 30px;
+    height: 30px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.remove-item {
+    color: var(--danger);
+    cursor: pointer;
+}
+
+.cart-summary {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 25px;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.summary-row.total {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 10px;
+    padding-top: 15px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.checkout-btn {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 50px;
+}
+
+/* Checkout Grid */
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+
+.checkout-form {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.checkout-form input, .checkout-form select, .checkout-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    color: white;
+    font-family: inherit;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.order-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.info-card ul {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.info-card li {
+    margin: 10px 0;
+}
+
+.info-card li i {
+    color: var(--success);
+    margin-right: 10px;
+}
+
+/* Dashboard */
+.dashboard-header {
+    padding: 120px 0 40px;
+    text-align: center;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.stat-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--secondary);
+}
+
+.referral-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.referral-link-box {
+    display: flex;
+    margin: 20px 0;
+}
+
+.referral-link-box input {
+    flex: 1;
+    padding: 12px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px 0 0 10px;
+    color: white;
+}
+
+.referral-link-box button {
+    padding: 12px 20px;
+    background: var(--secondary);
+    border: none;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+}
+
+.share-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.share-wa, .share-fb, .share-tw {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.share-wa { background: #25D366; color: white; }
+.share-fb { background: #1877F2; color: white; }
+.share-tw { background: #1DA1F2; color: white; }
+
+.transactions-table {
+    overflow-x: auto;
+}
+
+.transactions-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.transactions-table th, .transactions-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.transactions-table th {
+    color: var(--secondary);
+}
+
+/* Affiliate Banner */
+.affiliate-banner {
+    padding: 60px 0;
+    background: linear-gradient(135deg, var(--primary-dark), var(--dark));
+}
+
+.banner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.banner-stats {
+    display: flex;
+    gap: 40px;
+}
+
+.banner-stat {
+    text-align: center;
+}
+
+.banner-stat h3 {
+    font-size: 2rem;
+    color: var(--secondary);
+}
+
+/* Testimonials */
+.testimonials {
+    padding: 80px 0;
+}
+
+.testimonials-slider {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.testimonial-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+}
+
+.testimonial-card i {
+    font-size: 2rem;
+    color: var(--secondary);
+    margin-bottom: 15px;
+}
+
+/* CTA Section */
+.cta {
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    text-align: center;
+}
+
+.cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.cta .btn-primary {
+    background: white;
+    color: var(--primary);
+}
+
+.cta .btn-outline {
+    border-color: white;
+    color: white;
+}
+
+/* Footer */
+footer {
+    background: #0f0f1a;
+    padding: 60px 0 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.footer-logo span {
+    font-size: 2rem;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.footer-social a {
+    width: 35px;
+    height: 35px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: 0.3s;
+}
+
+.footer-social a:hover {
+    background: var(--secondary);
+    transform: translateY(-3px);
+}
+
+.footer-links h4, .footer-contact h4 {
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    display: block;
+    color: #aaa;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--secondary);
+    transform: translateX(5px);
+}
+
+.footer-contact p {
+    margin-bottom: 10px;
+    color: #aaa;
+}
+
+.footer-contact i {
+    width: 25px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: #aaa;
+    font-size: 0.8rem;
+}
+
+/* WhatsApp Float */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+    z-index: 999;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    .mobile-menu {
+        display: block;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero-buttons, .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .cart-container, .checkout-grid, .banner-content {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    .payment-methods {
+        grid-template-columns: 1fr;
+    }
+    .hero-stats {
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.feature-card, .step, .product-3d-card, .menu-card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Page Header */
+.page-header {
+    padding: 120px 0 60px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--dark), #0a0a15);
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+}
+
+.page-header h1 span {
+    color: var(--secondary);
+}
+
+/* Filters */
+.filters {
+    padding: 30px 0;
+    background: rgba(0,0,0,0.3);
+}
+
+.filter-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter-input, .filter-select {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    color: white;
+}
+
+/* No Results */
+.no-results {
+    text-align: center;
+    padding: 50px;
+}
+
+.no-results i {
+    font-size: 3rem;
+    color: #aaa;
+    margin-bottom: 15px;
+}
