@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Royal Rock Wellness</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-icon">👑</div>
+            <div class="logo-text">
+                <h2>ROYAL ROCK</h2>
+                <p>Wellness & Dining</p>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="restaurant.html">Restaurant</a>
+            <a href="register.html">Affiliate</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        </div>
+        <div class="nav-buttons">
+            <a href="register.html" class="btn-affiliate">Join Affiliate</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="restaurant.html">Restaurant</a>
+        <a href="register.html">Affiliate</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="cart.html">Cart</a>
+    </div>
+</nav>
+
+<section class="page-header">
+    <div class="container">
+        <h1>Checkout</h1>
+        <p>Complete your purchase</p>
+    </div>
+</section>
+
+<section class="checkout-section">
+    <div class="container">
+        <div class="checkout-grid">
+            <div class="checkout-form">
+                <h3>Shipping Information</h3>
+                <form id="checkoutForm">
+                    <div class="form-row">
+                        <input type="text" id="fullName" placeholder="Full Name" required>
+                        <input type="tel" id="phone" placeholder="Phone Number" required>
+                    </div>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                    <textarea id="address" rows="3" placeholder="Delivery Address (City, Street, Landmark)" required></textarea>
+                    
+                    <h3>Shipping Calculator</h3>
+                    <div class="form-row">
+                        <select id="region" required onchange="calculateShipping()">
+                            <option value="">Select Region</option>
+                            <option value="northwest">North West (Bamenda)</option>
+                            <option value="littoral">Littoral (Douala)</option>
+                            <option value="centre">Centre (Yaoundé)</option>
+                            <option value="west">West (Bafoussam)</option>
+                            <option value="other">Other Regions</option>
+                        </select>
+                        <input type="text" id="shippingEstimate" placeholder="Shipping Cost" readonly>
+                    </div>
+                    
+                    <h3>Referral Code (Optional)</h3>
+                    <input type="text" id="referralCode" placeholder="Enter affiliate referral code">
+                    
+                    <h3>Payment Method</h3>
+                    <div class="payment-methods">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="mtn" checked>
+                            <i class="fas fa-mobile-alt"></i> MTN Mobile Money
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="orange">
+                            <i class="fas fa-mobile-alt"></i> Orange Money
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="card">
+                            <i class="fab fa-cc-visa"></i> Credit/Debit Card
+                        </label>
+                    </div>
+                    
+                    <div class="order-summary" id="checkoutSummary"></div>
+                    
+                    <button type="submit" class="btn-primary place-order">Place Order</button>
+                </form>
+                <div id="checkoutStatus"></div>
+            </div>
+            <div class="order-info">
+                <div class="info-card">
+                    <h3>Why Shop With Us?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> 100% Natural Products</li>
+                        <li><i class="fas fa-check-circle"></i> Free Delivery over 100,000 CFA</li>
+                        <li><i class="fas fa-check-circle"></i> 14-Day Money Back Guarantee</li>
+                        <li><i class="fas fa-check-circle"></i> Secure Payments</li>
+                        <li><i class="fas fa-check-circle"></i> 24/7 Customer Support</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>Refer & Earn!</h3>
+                    <p>Share your referral code and earn <strong>6,000 CFA (12%)</strong> on every purchase!</p>
+                    <a href="register.html" class="btn-outline" style="width:100%; text-align:center;">Join Affiliate Program</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

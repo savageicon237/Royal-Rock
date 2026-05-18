@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | Royal Rock Wellness</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-icon">👑</div>
+            <div class="logo-text">
+                <h2>ROYAL ROCK</h2>
+                <p>Wellness & Dining</p>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="restaurant.html">Restaurant</a>
+            <a href="register.html">Affiliate</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="cart.html" class="active">Cart (<span id="cartCount">0</span>)</a>
+        </div>
+        <div class="nav-buttons">
+            <a href="register.html" class="btn-affiliate">Join Affiliate</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="restaurant.html">Restaurant</a>
+        <a href="register.html">Affiliate</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="cart.html">Cart</a>
+    </div>
+</nav>
+
+<section class="page-header">
+    <div class="container">
+        <h1>Shopping <span>Cart</span></h1>
+        <p>Review your items before checkout</p>
+    </div>
+</section>
+
+<section class="cart-section">
+    <div class="container">
+        <div class="cart-container">
+            <div class="cart-items" id="cartItems">
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Your cart is empty</p>
+                    <a href="shop.html" class="btn-primary">Continue Shopping</a>
+                </div>
+            </div>
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">0 CFA</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span id="shippingCost">Calculated at checkout</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="total">0 CFA</span>
+                </div>
+                <a href="checkout.html" class="btn-primary checkout-btn">Proceed to Checkout</a>
+                <p class="payment-info"><i class="fas fa-lock"></i> Secure payment via MTN Money, Orange Money, or Card</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

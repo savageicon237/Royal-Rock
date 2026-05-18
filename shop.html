@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Royal Rock Wellness</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-icon">👑</div>
+            <div class="logo-text">
+                <h2>ROYAL ROCK</h2>
+                <p>Wellness & Dining</p>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html" class="active">Shop</a>
+            <a href="restaurant.html">Restaurant</a>
+            <a href="register.html">Affiliate</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        </div>
+        <div class="nav-buttons">
+            <a href="register.html" class="btn-affiliate">Join Affiliate</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="restaurant.html">Restaurant</a>
+        <a href="register.html">Affiliate</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="cart.html">Cart</a>
+    </div>
+</nav>
+
+<section class="page-header parallax">
+    <div class="container">
+        <h1>Our <span>Wellness Products</span></h1>
+        <p>Natural healing solutions for a healthier you</p>
+    </div>
+</section>
+
+<!-- Filters -->
+<section class="filters">
+    <div class="container">
+        <div class="filter-row">
+            <div class="filter-group">
+                <input type="text" id="searchProducts" placeholder="🔍 Search products..." class="filter-input">
+            </div>
+            <div class="filter-group">
+                <select id="categoryFilter" class="filter-select">
+                    <option value="all">All Categories</option>
+                    <option value="herbal">Herbal Supplements</option>
+                    <option value="wellness">Wellness</option>
+                    <option value="detox">Detox</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <select id="sortFilter" class="filter-select">
+                    <option value="default">Sort by: Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Grid -->
+<section class="products-section">
+    <div class="container">
+        <div class="products-3d-grid" id="productsGrid"></div>
+        <div id="noResults" class="no-results" style="display: none;">
+            <i class="fas fa-search"></i>
+            <h3>No products found</h3>
+            <p>Try adjusting your search</p>
+        </div>
+    </div>
+</section>
+
+<!-- Affiliate Banner -->
+<section class="affiliate-banner">
+    <div class="container">
+        <div class="banner-content">
+            <div class="banner-text">
+                <span class="banner-badge">💎 Affiliate Opportunity</span>
+                <h2>Earn 12% Commission</h2>
+                <p>Share your referral link and earn 6,000 CFA every time someone buys our 50,000 CFA product!</p>
+                <a href="register.html" class="btn-primary">Join for Free <i class="fas fa-rocket"></i></a>
+            </div>
+            <div class="banner-stats">
+                <div class="banner-stat">
+                    <h3>6,000 CFA</h3>
+                    <p>Per Referral</p>
+                </div>
+                <div class="banner-stat">
+                    <h3>12%</h3>
+                    <p>Commission</p>
+                </div>
+                <div class="banner-stat">
+                    <h3>Unlimited</h3>
+                    <p>Earnings</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

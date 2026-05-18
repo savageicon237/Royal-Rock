@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affiliate Dashboard | Royal Rock</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-icon">👑</div>
+            <div class="logo-text">
+                <h2>ROYAL ROCK</h2>
+                <p>Wellness & Dining</p>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="restaurant.html">Restaurant</a>
+            <a href="register.html">Affiliate</a>
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        </div>
+        <div class="nav-buttons">
+            <a href="register.html" class="btn-affiliate">Join Affiliate</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="restaurant.html">Restaurant</a>
+        <a href="register.html">Affiliate</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="cart.html">Cart</a>
+    </div>
+</nav>
+
+<section class="dashboard-header">
+    <div class="container">
+        <h1>Affiliate Dashboard</h1>
+        <p>Welcome back, <span id="userName">Affiliate</span>!</p>
+    </div>
+</section>
+
+<section class="dashboard-stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card" data-aos="flip-left">
+                <div class="stat-icon">💰</div>
+                <div class="stat-info">
+                    <h3>Total Earnings</h3>
+                    <div class="stat-value" id="totalEarnings">0 CFA</div>
+                </div>
+            </div>
+            <div class="stat-card" data-aos="flip-left" data-aos-delay="100">
+                <div class="stat-icon">👥</div>
+                <div class="stat-info">
+                    <h3>Total Referrals</h3>
+                    <div class="stat-value" id="totalReferrals">0</div>
+                </div>
+            </div>
+            <div class="stat-card" data-aos="flip-left" data-aos-delay="200">
+                <div class="stat-icon">🛒</div>
+                <div class="stat-info">
+                    <h3>Sales</h3>
+                    <div class="stat-value" id="totalSales">0</div>
+                </div>
+            </div>
+            <div class="stat-card" data-aos="flip-left" data-aos-delay="300">
+                <div class="stat-icon">💳</div>
+                <div class="stat-info">
+                    <h3>Pending Payment</h3>
+                    <div class="stat-value" id="pendingPayment">0 CFA</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="referral-section">
+    <div class="container">
+        <div class="referral-card" data-aos="fade-up">
+            <h3>Your Referral Link</h3>
+            <div class="referral-link-box">
+                <input type="text" id="referralLink" readonly>
+                <button onclick="copyReferralLink()"><i class="fas fa-copy"></i> Copy</button>
+            </div>
+            <div class="share-buttons">
+                <button onclick="shareOnWhatsApp()" class="share-wa"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                <button onclick="shareOnFacebook()" class="share-fb"><i class="fab fa-facebook-f"></i> Facebook</button>
+                <button onclick="shareOnTwitter()" class="share-tw"><i class="fab fa-twitter"></i> Twitter</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="transactions-section">
+    <div class="container">
+        <h2>Recent Transactions</h2>
+        <div class="transactions-table">
+            <table>
+                <thead>
+                    <tr><th>Date</th><th>Referral Name</th><th>Product</th><th>Amount</th><th>Commission</th><th>Status</th></tr>
+                </thead>
+                <tbody id="transactionsList"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Rock Restaurant | Fine Dining</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-icon">👑</div>
+            <div class="logo-text">
+                <h2>ROYAL ROCK</h2>
+                <p>Wellness & Dining</p>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="restaurant.html" class="active">Restaurant</a>
+            <a href="register.html">Affiliate</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        </div>
+        <div class="nav-buttons">
+            <a href="register.html" class="btn-affiliate">Join Affiliate</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="restaurant.html">Restaurant</a>
+        <a href="register.html">Affiliate</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="cart.html">Cart</a>
+    </div>
+</nav>
+
+<section class="restaurant-hero parallax">
+    <div class="hero-overlay"></div>
+    <div class="container" data-aos="zoom-in">
+        <h1>Royal Rock <span>Restaurant</span></h1>
+        <p>Experience fine dining with panoramic views</p>
+    </div>
+</section>
+
+<!-- Menu Categories -->
+<section class="menu-categories">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="subtitle">Our Menu</span>
+            <h2>Exquisite <span>Dishes</span></h2>
+            <div class="underline"></div>
+        </div>
+        <div class="menu-tabs">
+            <button class="menu-tab active" data-category="all">All</button>
+            <button class="menu-tab" data-category="appetizers">Appetizers</button>
+            <button class="menu-tab" data-category="main">Main Courses</button>
+            <button class="menu-tab" data-category="desserts">Desserts</button>
+            <button class="menu-tab" data-category="drinks">Drinks</button>
+        </div>
+        <div class="menu-grid" id="menuGrid"></div>
+    </div>
+</section>
+
+<!-- Restaurant Info -->
+<section class="restaurant-info">
+    <div class="container">
+        <div class="info-grid">
+            <div class="info-card" data-aos="fade-right">
+                <i class="fas fa-clock"></i>
+                <h3>Opening Hours</h3>
+                <p>Monday - Friday: 11am - 10pm</p>
+                <p>Saturday - Sunday: 10am - 11pm</p>
+            </div>
+            <div class="info-card" data-aos="fade-up">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Location</h3>
+                <p>Upstation, Tar GRA</p>
+                <p>Bamenda, Cameroon</p>
+            </div>
+            <div class="info-card" data-aos="fade-left">
+                <i class="fas fa-phone"></i>
+                <h3>Reservations</h3>
+                <p>+237 6XX XXX XXX</p>
+                <p>reservations@royalrock.com</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery -->
+<section class="gallery">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="subtitle">Gallery</span>
+            <h2>Our <span>Restaurant</span></h2>
+            <div class="underline"></div>
+        </div>
+        <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

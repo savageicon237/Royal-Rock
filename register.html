@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Affiliate Program | Royal Rock</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-icon">👑</div>
+            <div class="logo-text">
+                <h2>ROYAL ROCK</h2>
+                <p>Wellness & Dining</p>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="restaurant.html">Restaurant</a>
+            <a href="register.html" class="active">Affiliate</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        </div>
+        <div class="nav-buttons">
+            <a href="register.html" class="btn-affiliate">Join Affiliate</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="restaurant.html">Restaurant</a>
+        <a href="register.html">Affiliate</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="cart.html">Cart</a>
+    </div>
+</nav>
+
+<section class="register-hero">
+    <div class="container">
+        <h1>Become an <span>Affiliate</span></h1>
+        <p>Earn 12% commission on every sale - 6,000 CFA per 50,000 CFA product!</p>
+    </div>
+</section>
+
+<section class="register-form-section">
+    <div class="container">
+        <div class="register-grid">
+            <div class="register-info" data-aos="fade-right">
+                <div class="commission-card">
+                    <h3>💰 How It Works</h3>
+                    <div class="commission-steps">
+                        <div class="commission-step">
+                            <div class="step-icon">1</div>
+                            <div><strong>Register for free</strong><br>No fees, no hidden costs</div>
+                        </div>
+                        <div class="commission-step">
+                            <div class="step-icon">2</div>
+                            <div><strong>Get your unique referral link</strong><br>Share with friends & family</div>
+                        </div>
+                        <div class="commission-step">
+                            <div class="step-icon">3</div>
+                            <div><strong>Earn 6,000 CFA per sale</strong><br>When they buy our 50,000 CFA product</div>
+                        </div>
+                        <div class="commission-step">
+                            <div class="step-icon">4</div>
+                            <div><strong>Withdraw your earnings</strong><br>Via Mobile Money or Bank Transfer</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="calculator-card">
+                    <h3>📊 Earnings Calculator</h3>
+                    <div class="calculator">
+                        <label>Number of Referrals</label>
+                        <input type="number" id="referralCount" value="1" min="1">
+                        <div class="calculator-result">
+                            <p>Your Earnings: <span id="earningResult">6,000</span> CFA</p>
+                            <p>Company Earnings: <span id="companyEarning">44,000</span> CFA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="register-form" data-aos="fade-left">
+                <h2>Register Now - Free!</h2>
+                <form id="registerForm">
+                    <div class="form-row">
+                        <input type="text" id="fullName" placeholder="Full Name" required>
+                        <input type="text" id="phoneNumber" placeholder="Phone Number" required>
+                    </div>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                    <input type="text" id="referralCode" placeholder="Referral Code (if any)">
+                    <select id="paymentMethod">
+                        <option value="mtn">MTN Mobile Money</option>
+                        <option value="orange">Orange Money</option>
+                        <option value="bank">Bank Transfer</option>
+                    </select>
+                    <div class="terms">
+                        <input type="checkbox" id="terms" required>
+                        <label>I agree to the terms and conditions</label>
+                    </div>
+                    <button type="submit" class="btn-primary">Register as Affiliate <i class="fas fa-arrow-right"></i></button>
+                </form>
+                <div id="registerStatus"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
