@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herbal Affiliate Program | Royal Rock CO.LTD</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <h1>ROYAL ROCK <span>CO.LTD</span></h1>
+            <p>Excellence Across Industries</p>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="affiliate.html" class="active">🌿 Herbal Affiliate</a>
+            <a href="restaurant.html">🍽️ Royal Rock Dining</a>
+            <a href="medical.html">🏥 Royal Rock Medicals</a>
+        </div>
+        <div class="mobile-menu" onclick="toggleMenu()">
+            <i class="fas fa-bars">Menu</i>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="affiliate.html">Herbal Affiliate</a>
+        <a href="restaurant.html">Royal Rock Dining</a>
+        <a href="medical.html">Royal Rock Medicals</a>
+    </div>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header affiliate-header">
+    <div class="container">
+        <h1 class="immerse-text">Herbal Affiliate Program</h1>
+        <p>Earn 15% commission on every product sold through your referral</p>
+        <div class="header-buttons">
+            <a href="affiliate-register.html" class="btn-primary">Register Now</a>
+            <a href="#how-it-works" class="btn-outline">How It Works</a>
+        </div>
+    </div>
+</section>
+
+<!-- Sub-pages Navigation -->
+<section class="subpage-nav">
+    <div class="container">
+        <div class="subpage-links">
+            <a href="#products" class="subpage-link active" data-page="products">🌿 Our Products</a>
+            <a href="#how-it-works" class="subpage-link" data-page="how-it-works">💡 How It Works</a>
+            <a href="#commission" class="subpage-link" data-page="commission">💰 Commission Structure</a>
+            <a href="#testimonials" class="subpage-link" data-page="testimonials">⭐ Affiliate Reviews</a>
+            <a href="#faq" class="subpage-link" data-page="faq">❓ FAQ</a>
+        </div>
+    </div>
+</section>
+
+<!-- Sub-page: Products -->
+<section id="products" class="subpage active">
+    <div class="container">
+        <h2 class="section-title">Our <span>Herbal Products</span></h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <!-- IMAGE: Add herbal product 1 image here -->
+                    <img src="images/4.jpg" alt="Herbal Product 1">
+                </div>
+                <div class="product-info">
+                    <h3>Tooth Care </h3>
+                    <p>Hel[s for tooth-ache</p>
+                    <div class="product-price">FCFA</div>
+                    <div class="product-commission">You earn: FCFA</div>
+                    <button class="btn-small" onclick="copyReferralLink()">Get Referral Link</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <!-- IMAGE: Add herbal product 2 image here -->
+                    <img src="images/5.jpg" alt="Herbal Product 2">
+                </div>
+                <div class="product-info">
+                    <h3>Air Force One</h3>
+                    <p>Eliminates all types of insects from your home </p>
+                    <div class="product-price">FCFA</div>
+                    <div class="product-commission">You earn: FCFA</div>
+                    <button class="btn-small" onclick="copyReferralLink()">Get Referral Link</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <!-- IMAGE: Add herbal product 3 image here -->
+                    <img src="images/8.jpg" alt="Herbal Product 3">
+                </div>
+                <div class="product-info">
+                    <h3>Homornal Imbalance </h3>
+                    <p>Treats all homon issues </p>
+                    <div class="product-price">FCFA</div>
+                    <div class="product-commission">You earn: FCFA</div>
+                    <button class="btn-small" onclick="copyReferralLink()">Get Referral Link</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sub-page: How It Works -->
+<section id="how-it-works" class="subpage">
+    <div class="container">
+        <h2 class="section-title">How It <span>Works</span></h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">01</div>
+                <i class="fas fa-user-plus"></i>
+                <h3>Register Free</h3>
+                <p>Sign up with your referral code (if you have one) or join directly</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">02</div>
+                <i class="fas fa-share-alt"></i>
+                <h3>Share Your Link</h3>
+                <p>Get your unique referral link and share it with friends, family, or social media</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">03</div>
+                <i class="fas fa-shopping-cart"></i>
+                <h3>Customer Purchases</h3>
+                <p>When someone buys using your link, you earn 15% commission instantly</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">04</div>
+                <i class="fas fa-money-bill-wave"></i>
+                <h3>Get Paid</h3>
+                <p>Withdraw your earnings via Mobile Money, Bank Transfer, or PayPal</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sub-page: Commission Structure -->
+<section id="commission" class="subpage">
+    <div class="container">
+        <h2 class="section-title">Commission <span>Structure</span></h2>
+        <div class="commission-grid">
+            <div class="commission-card">
+                <h3>Level 1 Commission</h3>
+                <div class="commission-rate">15%</div>
+                <p>Direct sales from your referral link</p>
+                <div class="example">Example: Sell $100 → Earn $15</div>
+            </div>
+            <div class="commission-card featured">
+                <h3>Level 2 Commission</h3>
+                <div class="commission-rate">5%</div>
+                <p>From affiliates you recruit</p>
+                <div class="example">Example: Your recruit sells $100 → You earn $5</div>
+            </div>
+            <div class="commission-card">
+                <h3>Monthly Bonus</h3>
+                <div class="commission-rate">+$500</div>
+                <p>For top 10 affiliates monthly</p>
+                <div class="example">Top performers get extra cash bonuses</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sub-page: Testimonials -->
+<section id="testimonials" class="subpage">
+    <div class="container">
+        <h2 class="section-title">What <span>Affiliates Say</span></h2>
+        <div class="testimonials-slider">
+            <div class="testimonial-card">
+                <i class="fas fa-quote-left"></i>
+                <p>"I've earned over $2,000 in my first month with Royal Rock's affiliate program. The products sell themselves!"</p>
+                <div class="testimonial-author">
+                    <strong>Sarah M.</strong>
+                    <span>Top Affiliate, Cameroon</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <i class="fas fa-quote-left"></i>
+                <p>"The 15% commission is the best in the industry. My referral code has brought me consistent monthly income."</p>
+                <div class="testimonial-author">
+                    <strong>John D.</strong>
+                    <span>Gold Affiliate</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <i class="fas fa-quote-left"></i>
+                <p>"Royal Rock's herbal products are high-quality. My customers keep coming back, which means recurring commissions!"</p>
+                <div class="testimonial-author">
+                    <strong>Paul N.</strong>
+                    <span>Super Affiliate</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sub-page: FAQ -->
+<section id="faq" class="subpage">
+    <div class="container">
+        <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I get my referral code?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>After registering as an affiliate, you'll receive a unique referral code in your dashboard. You can also generate custom referral links for each product.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>When do I get paid?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Commissions are paid monthly on the 15th. Minimum payout is $50. We pay via Mobile Money (MTN, Orange), Bank Transfer, or PayPal.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do I need a referral code to register?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! You must enter a referral code when registering. If you don't have one, contact any existing affiliate or email us for assistance.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I promote on social media?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! We encourage affiliates to promote on Facebook, Instagram, WhatsApp, TikTok, and other platforms. Use your unique referral link.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <h3>ROYAL ROCK <span>CO.LTD</span></h3>
+                <p>Join our affiliate program and start earning today!</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="affiliate-register.html">Register Now</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#commission">Commission</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> +237 683 525 177</p>
+                <p><i class="fas fa-envelope"></i> affiliate@royalrock.com</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

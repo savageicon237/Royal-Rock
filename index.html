@@ -3,205 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal Rock Wellness | Natural Healing & Fine Dining</title>
+    <title>Royal Rock CO.LTD | Multi-Business Excellence</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
-<!-- Preloader -->
-<div class="preloader">
-    <div class="preloader-ring"></div>
-    <div class="preloader-text">ROYAL ROCK</div>
-</div>
+<!-- 3D Particle Background -->
+<div id="particle-canvas"></div>
+
+<!-- Exploding Objects Container -->
+<div class="explosion-container" id="explosionContainer"></div>
 
 <!-- Navbar -->
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
-            <div class="logo-icon">👑</div>
-            <div class="logo-text">
-                <h2>ROYAL ROCK</h2>
-                <p>Wellness & Dining</p>
-            </div>
+            <h1>ROYAL ROCK <span>CO.LTD</span></h1>
+            <p>Excellence Across Industries</p>
         </div>
         <div class="nav-links">
             <a href="index.html" class="active">Home</a>
-            <a href="shop.html">Shop</a>
-            <a href="restaurant.html">Restaurant</a>
-            <a href="register.html">Affiliate</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+            <a href="affiliate.html">🌿 Herbal Affiliate</a>
+            <a href="restaurant.html">🍽️ Royal Rock Dining</a>
+            <a href="medical.html">🏥 Royal Rock Medicals</a>
         </div>
-        <div class="nav-buttons">
-            <a href="register.html" class="btn-affiliate">Join Affiliate</a>
-            <div class="mobile-menu" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </div>
+        <div class="mobile-menu" onclick="toggleMenu()">
+            <i class="fas fa-bars">Menu</i>
         </div>
     </div>
     <div class="mobile-nav" id="mobileNav">
         <a href="index.html">Home</a>
-        <a href="shop.html">Shop</a>
-        <a href="restaurant.html">Restaurant</a>
-        <a href="register.html">Affiliate</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="cart.html">Cart</a>
+        <a href="affiliate.html">Herbal Affiliate</a>
+        <a href="restaurant.html">Royal Rock Dining</a>
+        <a href="medical.html">Royal Rock Medicals</a>
     </div>
 </nav>
 
-<!-- Hero Section with Parallax -->
-<section class="hero parallax">
-    <div class="hero-overlay"></div>
-    <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-        <div class="hero-badge">Since 2020</div>
-        <h1>Royal Rock <span>Wellness</span></h1>
-        <p>Discover natural healing products and exquisite dining experiences. Join our affiliate program and earn 12% commission on every referral!</p>
-        <div class="hero-buttons">
-            <a href="shop.html" class="btn-primary">Shop Now <i class="fas fa-arrow-right"></i></a>
-            <a href="register.html" class="btn-outline">Earn 12% <i class="fas fa-gift"></i></a>
+<!-- Hero Section with 3D Slider -->
+<section class="hero">
+    <div class="hero-slider">
+        <div class="slide active" data-slide="0">
+            <div class="slide-content">
+                <span class="slide-tag">Earn 15% Commission</span>
+                <h1 class="immerse-text">Herbal Affiliate Program</h1>
+                <p>Join our affiliate network and earn 15% commission on every referral. Share natural wellness products and grow your income.</p>
+                <a href="affiliate.html" class="btn-primary">Join Now →</a>
+            </div>
+            <div class="slide-image">
+                <!-- IMAGE: Add your herbal products image here -->
+                <img src="images/2.jpg" alt="Herbal Products">
+            </div>
         </div>
-        <div class="hero-stats">
-            <div class="stat">
-                <h3><span class="counter" data-target="5000">0</span>+</h3>
-                <p>Happy Customers</p>
+        <div class="slide" data-slide="1">
+            <div class="slide-content">
+                <span class="slide-tag">Fine Dining Experience</span>
+                <h1 class="immerse-text">Royal Rock Dining</h1>
+                <p>Experience culinary excellence at its finest. Premium dining with breathtaking views and exquisite cuisine.</p>
+                <a href="restaurant.html" class="btn-primary">Explore Menu →</a>
             </div>
-            <div class="stat">
-                <h3>12%</h3>
-                <p>Commission Rate</p>
+            <div class="slide-image">
+                <!-- IMAGE: Add your restaurant image here -->
+                <img src="images/4.jpg" alt="Royal Rock Dining">
             </div>
-            <div class="stat">
-                <h3><span class="counter" data-target="24">0</span>/7</h3>
-                <p>Support</p>
+        </div>
+        <div class="slide" data-slide="2">
+            <div class="slide-content">
+                <span class="slide-tag">Quality Medical Equipment</span>
+                <h1 class="immerse-text">Royal Rock Medicals</h1>
+                <p>Premium medical equipment and supplies for healthcare professionals. Quality you can trust.</p>
+                <a href="medical.html" class="btn-primary">Shop Now →</a>
+            </div>
+            <div class="slide-image">
+                <!-- IMAGE: Add your medical equipment image here -->
+                <img src="images/3.jpg" alt="Medical Equipment">
             </div>
         </div>
     </div>
-    <div class="hero-scroll">
-        <span>Scroll</span>
-        <i class="fas fa-arrow-down"></i>
+    <div class="slider-controls">
+        <button class="slider-prev"><i class="fas fa-chevron-left"></i></button>
+        <div class="slider-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+        <button class="slider-next"><i class="fas fa-chevron-right"></i></button>
     </div>
 </section>
 
-<!-- Features Section -->
-<section class="features">
+<!-- Business Cards Section -->
+<section class="business-cards">
     <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="subtitle">Why Choose Us</span>
-            <h2>Natural Healing <span>& Premium Dining</span></h2>
-            <div class="underline"></div>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card" data-aos="flip-left" data-aos-delay="100">
-                <div class="feature-icon">🌿</div>
-                <h3>100% Natural</h3>
-                <p>All products made from natural ingredients sourced from Cameroon</p>
+        <h2 class="section-title">Our <span>Divisions</span></h2>
+        <div class="cards-grid">
+            <div class="business-card" data-business="affiliate">
+                <div class="card-icon"><i class="fas fa-leaf"></i></div>
+                <h3>Herbal Affiliate Program</h3>
+                <p>Earn 15% commission on every referral. Natural wellness products with global shipping.</p>
+                <div class="card-stats">
+                    <span><i class="fas fa-users"></i> 500+ Affiliates</span>
+                    <span><i class="fas fa-chart-line"></i> 15% Commission</span>
+                </div>
+                <a href="affiliate.html" class="card-link">Learn More →</a>
             </div>
-            <div class="feature-card" data-aos="flip-left" data-aos-delay="200">
-                <div class="feature-icon">💰</div>
-                <h3>Earn 12% Commission</h3>
-                <p>Get 6,000 CFA per referral when they purchase our 50,000 CFA products</p>
+            <div class="business-card" data-business="restaurant">
+                <div class="card-icon"><i class="fas fa-utensils"></i></div>
+                <h3>Royal Rock Dining</h3>
+                <p>Fine dining restaurant offering exquisite cuisine, romantic ambiance, and exceptional service.</p>
+                <div class="card-stats">
+                    <span><i class="fas fa-star"></i> 4.8 Rating</span>
+                    <span><i class="fas fa-clock"></i> 8am - 10pm</span>
+                </div>
+                <a href="restaurant.html" class="card-link">Explore Menu →</a>
             </div>
-            <div class="feature-card" data-aos="flip-left" data-aos-delay="300">
-                <div class="feature-icon">🚚</div>
-                <h3>Free Delivery</h3>
-                <p>Free shipping on orders over 100,000 CFA in Cameroon</p>
-            </div>
-            <div class="feature-card" data-aos="flip-left" data-aos-delay="400">
-                <div class="feature-icon">⭐</div>
-                <h3>Premium Quality</h3>
-                <p>Certified organic products with proven results</p>
+            <div class="business-card" data-business="medical">
+                <div class="card-icon"><i class="fas fa-stethoscope"></i></div>
+                <h3>Royal Rock Medicals</h3>
+                <p>Premium medical equipment and supplies for hospitals, clinics, and healthcare professionals.</p>
+                <div class="card-stats">
+                    <span><i class="fas fa-truck"></i> Fast Delivery</span>
+                    <span><i class="fas fa-shield-alt"></i> Certified Products</span>
+                </div>
+                <a href="medical.html" class="card-link">Shop Now →</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- How It Works -->
-<section class="how-it-works">
+<!-- Stats Counter Section -->
+<section class="stats-section">
     <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="subtitle">Affiliate Program</span>
-            <h2>How to <span>Earn 12%</span></h2>
-            <div class="underline"></div>
-        </div>
-        <div class="steps-grid">
-            <div class="step" data-aos="fade-right" data-aos-delay="100">
-                <div class="step-number">1</div>
-                <div class="step-icon">📝</div>
-                <h3>Register Free</h3>
-                <p>Sign up as an affiliate member - it's completely free!</p>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3 class="counter" data-target="500">0</h3>
+                <p>Happy Affiliates</p>
             </div>
-            <div class="step" data-aos="fade-up" data-aos-delay="200">
-                <div class="step-number">2</div>
-                <div class="step-icon">🔗</div>
-                <h3>Get Your Link</h3>
-                <p>Receive your unique referral link to share</p>
+            <div class="stat-item">
+                <h3 class="counter" data-target="10000">0</h3>
+                <p>Customers Served</p>
             </div>
-            <div class="step" data-aos="fade-down" data-aos-delay="300">
-                <div class="step-number">3</div>
-                <div class="step-icon">👥</div>
-                <h3>Refer Friends</h3>
-                <p>Share your link with friends and family</p>
+            <div class="stat-item">
+                <h3 class="counter" data-target="50">0</h3>
+                <p>Medical Partners</p>
             </div>
-            <div class="step" data-aos="fade-left" data-aos-delay="400">
-                <div class="step-number">4</div>
-                <div class="step-icon">💰</div>
-                <h3>Earn Commission</h3>
-                <p>Get 6,000 CFA (12%) when they purchase!</p>
+            <div class="stat-item">
+                <h3 class="counter" data-target="100">0</h3>
+                <p>Dishes Served Daily</p>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- Featured Products (3D Cards) -->
-<section class="featured-products">
-    <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="subtitle">Best Sellers</span>
-            <h2>Featured <span>Products</span></h2>
-            <div class="underline"></div>
-        </div>
-        <div class="products-3d-grid" id="featuredProducts"></div>
-        <div class="text-center">
-            <a href="shop.html" class="btn-primary">View All Products <i class="fas fa-arrow-right"></i></a>
-        </div>
-    </div>
-</section>
-
-<!-- Restaurant Preview -->
-<section class="restaurant-preview parallax">
-    <div class="preview-overlay"></div>
-    <div class="container" data-aos="zoom-in">
-        <div class="preview-content">
-            <span class="subtitle">Exquisite Dining</span>
-            <h2>Royal Rock <span>Restaurant</span></h2>
-            <p>Experience fine dining with a view. Traditional African cuisine meets international standards.</p>
-            <a href="restaurant.html" class="btn-primary">Explore Menu <i class="fas fa-utensils"></i></a>
-        </div>
-    </div>
-</section>
-
-<!-- Testimonials -->
-<section class="testimonials">
-    <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="subtitle">Testimonials</span>
-            <h2>What Our <span>Customers Say</span></h2>
-            <div class="underline"></div>
-        </div>
-        <div class="testimonials-slider" id="testimonialsSlider"></div>
-    </div>
-</section>
-
-<!-- CTA Section -->
-<section class="cta">
-    <div class="container" data-aos="flip-up">
-        <h2>Start Earning 12% Commission Today!</h2>
-        <p>Join our affiliate program for free and earn 6,000 CFA per sale</p>
-        <div class="cta-buttons">
-            <a href="register.html" class="btn-primary">Register as Affiliate</a>
-            <a href="shop.html" class="btn-outline">Shop Products</a>
         </div>
     </div>
 </section>
@@ -211,54 +161,35 @@
     <div class="container">
         <div class="footer-grid">
             <div class="footer-about">
-                <div class="footer-logo">
-                    <span>👑</span>
-                    <h3>ROYAL ROCK</h3>
-                </div>
-                <p>Natural wellness products and fine dining in the heart of Cameroon. Join our affiliate family and grow with us.</p>
+                <h3>ROYAL ROCK <span>CO.LTD</span></h3>
+                <p>Excellence across three industries - Herbal Products, Fine Dining, and Medical Equipment.</p>
                 <div class="footer-social">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
             <div class="footer-links">
                 <h4>Quick Links</h4>
-                <a href="index.html">Home</a>
-                <a href="shop.html">Shop</a>
-                <a href="restaurant.html">Restaurant</a>
-                <a href="register.html">Affiliate Program</a>
-                <a href="dashboard.html">Dashboard</a>
-            </div>
-            <div class="footer-links">
-                <h4>Products</h4>
-                <a href="shop.html">Wellness Products</a>
-                <a href="shop.html">Herbal Supplements</a>
-                <a href="restaurant.html">Restaurant Menu</a>
-                <a href="shop.html">Gift Cards</a>
+                <a href="affiliate.html">Herbal Affiliate</a>
+                <a href="restaurant.html">Royal Rock Dining</a>
+                <a href="medical.html">Royal Rock Medicals</a>
+                <a href="affiliate-register.html">Register as Affiliate</a>
             </div>
             <div class="footer-contact">
-                <h4>Contact Us</h4>
-                <p><i class="fas fa-phone"></i> +237 6XX XXX XXX</p>
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> +237 683 525 177</p>
                 <p><i class="fas fa-envelope"></i> info@royalrock.com</p>
                 <p><i class="fas fa-map-marker-alt"></i> Bamenda, Cameroon</p>
-                <p><i class="fas fa-clock"></i> Mon-Sat: 8am - 8pm</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Royal Rock Wellness. Affiliate Commission: 12% (6,000 CFA per 50,000 CFA sale)</p>
+            <p>&copy; 2025 Royal Rock CO.LTD - All Rights Reserved</p>
         </div>
     </div>
 </footer>
 
-<!-- WhatsApp Float -->
-<a href="https://wa.me/237600000000" class="whatsapp-float" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-    <span>Chat with us</span>
-</a>
-
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

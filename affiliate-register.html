@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affiliate Registration | Royal Rock CO.LTD</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <h1>ROYAL ROCK <span>CO.LTD</span></h1>
+            <p>Excellence Across Industries</p>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="affiliate.html">🌿 Herbal Affiliate</a>
+            <a href="restaurant.html">🍽️ Royal Rock Dining</a>
+            <a href="medical.html">🏥 Royal Rock Medicals</a>
+        </div>
+        <div class="mobile-menu" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="affiliate.html">Herbal Affiliate</a>
+        <a href="restaurant.html">Royal Rock Dining</a>
+        <a href="medical.html">Royal Rock Medicals</a>
+    </div>
+</nav>
+
+<section class="register-section">
+    <div class="container">
+        <div class="register-container">
+            <div class="register-info">
+                <h1>Become an Affiliate</h1>
+                <p>Join our affiliate program and earn 15% commission on every sale. It's free to join!</p>
+                <div class="benefits">
+                    <h3>What You Get:</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> 15% commission on all sales</li>
+                        <li><i class="fas fa-check-circle"></i> 5% on sub-affiliate sales</li>
+                        <li><i class="fas fa-check-circle"></i> Monthly bonus opportunities</li>
+                        <li><i class="fas fa-check-circle"></i> Marketing materials provided</li>
+                        <li><i class="fas fa-check-circle"></i> Dedicated affiliate support</li>
+                        <li><i class="fas fa-check-circle"></i> Weekly payouts</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="register-form">
+                <h2>Register Now</h2>
+                <form id="affiliateRegisterForm">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="regFullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" id="regEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" id="regPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Referral Code *</label>
+                        <input type="text" id="regReferralCode" placeholder="Enter referral code from existing affiliate" required>
+                        <small>You must have a referral code to register</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Create Username</label>
+                        <input type="text" id="regUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Create Password</label>
+                        <input type="password" id="regPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" id="regConfirmPassword" required>
+                    </div>
+                    <div class="form-group checkbox">
+                        <input type="checkbox" id="termsCheckbox" required>
+                        <label>I agree to the <a href="#">Terms and Conditions</a></label>
+                    </div>
+                    <button type="submit" class="btn-primary">Register as Affiliate</button>
+                </form>
+                <div id="registerStatus"></div>
+                <p class="login-link">Already have an account? <a href="affiliate-dashboard.html">Login here</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
