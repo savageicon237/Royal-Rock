@@ -13,17 +13,22 @@
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
-            <h1>ROYAL ROCK <span>CO.LTD</span></h1>
-            <p>Excellence Across Industries</p>
+            <h1>ROYAL ROCK <span></span></h1>
+            <p>Est. 2020</p>
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="affiliate.html">🌿 Herbal Affiliate</a>
             <a href="restaurant.html" class="active">🍽️ Royal Rock Dining</a>
             <a href="medical.html">🏥 Royal Rock Medicals</a>
+            <a href="helpful-content.html">📚 Resources</a>
+            <a href="trust-guarantee.html">⭐ Trust</a>
         </div>
-        <div class="mobile-menu" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
+        <div class="nav-buttons">
+            <a href="affiliate-login.html" class="btn-login"><i class="fas fa-user"></i> Login</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </div>
     <div class="mobile-nav" id="mobileNav">
@@ -31,10 +36,13 @@
         <a href="affiliate.html">Herbal Affiliate</a>
         <a href="restaurant.html">Royal Rock Dining</a>
         <a href="medical.html">Royal Rock Medicals</a>
+        <a href="helpful-content.html">Resources</a>
+        <a href="trust-guarantee.html">Trust</a>
+        <a href="affiliate-login.html">Login</a>
     </div>
 </nav>
 
-<section class="page-header menu-header">
+<section class="menu-header reveal">
     <div class="container">
         <h1>Our Full <span>Menu</span></h1>
         <p>Explore our exquisite selection of dishes</p>
@@ -42,7 +50,7 @@
     </div>
 </section>
 
-<section class="full-menu">
+<section class="full-menu reveal">
     <div class="container">
         <div class="menu-category">
             <h2>🍖 Appetizers</h2>
@@ -144,9 +152,30 @@
                 </div>
             </div>
         </div>
+        
+        <div class="menu-category">
+            <h2>🍷 Drinks</h2>
+            <div class="menu-list">
+                <div class="menu-row">
+                    <div class="menu-details">
+                        <h4>House Wine</h4>
+                        <p>Red or White</p>
+                    </div>
+                    <div class="menu-price">5,000 CFA</div>
+                </div>
+                <div class="menu-row">
+                    <div class="menu-details">
+                        <h4>Signature Cocktail</h4>
+                        <p>Royal Rock Special Blend</p>
+                    </div>
+                    <div class="menu-price">4,000 CFA</div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
+<script src="supabase-config.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

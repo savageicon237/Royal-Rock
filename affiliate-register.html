@@ -3,28 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Affiliate Registration | Royal Rock CO.LTD</title>
+    <title>Affiliate Registration | Royal Rock </title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
-            <h1>ROYAL ROCK <span>CO.LTD</span></h1>
-            <p>Excellence Across Industries</p>
+            <h1>ROYAL ROCK <span></span></h1>
+            <p>Est. 2020</p>
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="affiliate.html">🌿 Herbal Affiliate</a>
             <a href="restaurant.html">🍽️ Royal Rock Dining</a>
             <a href="medical.html">🏥 Royal Rock Medicals</a>
+            <a href="helpful-content.html">📚 Resources</a>
+            <a href="trust-guarantee.html">⭐ Trust</a>
         </div>
-        <div class="mobile-menu" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
+        <div class="nav-buttons">
+            <a href="affiliate-login.html" class="btn-login"><i class="fas fa-user"></i> Login</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </div>
     <div class="mobile-nav" id="mobileNav">
@@ -32,29 +37,36 @@
         <a href="affiliate.html">Herbal Affiliate</a>
         <a href="restaurant.html">Royal Rock Dining</a>
         <a href="medical.html">Royal Rock Medicals</a>
+        <a href="helpful-content.html">Resources</a>
+        <a href="trust-guarantee.html">Trust</a>
+        <a href="affiliate-login.html">Login</a>
     </div>
 </nav>
 
-<section class="register-section">
+<section class="register-section reveal">
     <div class="container">
         <div class="register-container">
             <div class="register-info">
                 <h1>Become an Affiliate</h1>
-                <p>Join our affiliate program and earn 15% commission on every sale. It's free to join!</p>
+                <div class="qualification-badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span>You must have purchased 100,000 CFA+ to register</span>
+                </div>
                 <div class="benefits">
                     <h3>What You Get:</h3>
                     <ul>
-                        <li><i class="fas fa-check-circle"></i> 15% commission on all sales</li>
-                        <li><i class="fas fa-check-circle"></i> 5% on sub-affiliate sales</li>
+                        <li><i class="fas fa-check-circle"></i> 12% commission on all sales</li>
+                        <li><i class="fas fa-check-circle"></i> 6% on sub-affiliate sales</li>
+                        <li><i class="fas fa-check-circle"></i> 3% on 2nd sub-affiliate sales</li>
                         <li><i class="fas fa-check-circle"></i> Monthly bonus opportunities</li>
-                        <li><i class="fas fa-check-circle"></i> Marketing materials provided</li>
+                        <li><i class="fas fa-check-circle"></i> Free marketing materials</li>
                         <li><i class="fas fa-check-circle"></i> Dedicated affiliate support</li>
-                        <li><i class="fas fa-check-circle"></i> Weekly payouts</li>
+                        <li><i class="fas fa-check-circle"></i> Weekly payouts via Mobile Money</li>
                     </ul>
                 </div>
             </div>
             <div class="register-form">
-                <h2>Register Now</h2>
+                <h2>Affiliate Registration</h2>
                 <form id="affiliateRegisterForm">
                     <div class="form-group">
                         <label>Full Name *</label>
@@ -63,10 +75,15 @@
                     <div class="form-group">
                         <label>Email Address *</label>
                         <input type="email" id="regEmail" required>
+                        <small>Must match purchase email</small>
                     </div>
                     <div class="form-group">
                         <label>Phone Number *</label>
                         <input type="tel" id="regPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Username *</label>
+                        <input type="text" id="regUsername" required>
                     </div>
                     <div class="form-group">
                         <label>Referral Code *</label>
@@ -74,15 +91,11 @@
                         <small>You must have a referral code to register</small>
                     </div>
                     <div class="form-group">
-                        <label>Create Username</label>
-                        <input type="text" id="regUsername" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Create Password</label>
+                        <label>Password *</label>
                         <input type="password" id="regPassword" required>
                     </div>
                     <div class="form-group">
-                        <label>Confirm Password</label>
+                        <label>Confirm Password *</label>
                         <input type="password" id="regConfirmPassword" required>
                     </div>
                     <div class="form-group checkbox">
@@ -92,12 +105,25 @@
                     <button type="submit" class="btn-primary">Register as Affiliate</button>
                 </form>
                 <div id="registerStatus"></div>
-                <p class="login-link">Already have an account? <a href="affiliate-dashboard.html">Login here</a></p>
+                <p class="login-link">Already have an account? <a href="affiliate-login.html">Login here</a></p>
             </div>
         </div>
     </div>
 </section>
-
+<script>
+// Emergency bypass - Press Ctrl+Shift+B to auto-fill bypass code
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key === 'B') {
+        const referralInput = document.getElementById('regReferralCode');
+        if (referralInput) {
+            referralInput.value = 'BYPASS_FIRST_USER';
+            referralInput.style.borderColor = '#22c55e';
+            alert('Bypass code activated! You can register as first user.');
+        }
+    }
+});
+</script>
+<script src="supabase-config.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

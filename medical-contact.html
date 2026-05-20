@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Quote | Royal Rock Medicals</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <h1>ROYAL ROCK <span></span></h1>
+            <p>Est. 2020</p>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="affiliate.html">🌿 Herbal Affiliate</a>
+            <a href="restaurant.html">🍽️ Royal Rock Dining</a>
+            <a href="medical.html" class="active">🏥 Royal Rock Medicals</a>
+            <a href="helpful-content.html">📚 Resources</a>
+            <a href="trust-guarantee.html">⭐ Trust</a>
+        </div>
+        <div class="nav-buttons">
+            <a href="affiliate-login.html" class="btn-login"><i class="fas fa-user"></i> Login</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="affiliate.html">Herbal Affiliate</a>
+        <a href="restaurant.html">Royal Rock Dining</a>
+        <a href="medical.html">Royal Rock Medicals</a>
+        <a href="helpful-content.html">Resources</a>
+        <a href="trust-guarantee.html">Trust</a>
+        <a href="affiliate-login.html">Login</a>
+    </div>
+</nav>
+
+<section class="menu-header reveal">
+    <div class="container">
+        <h1>Request a <span>Quote</span></h1>
+        <p>Tell us what equipment you need and we'll get back to you within 24 hours</p>
+        <a href="medical.html" class="btn-outline">← Back to Medicals</a>
+    </div>
+</section>
+
+<section class="quote-section reveal">
+    <div class="container">
+        <div class="quote-container">
+            <div class="quote-info">
+                <h3>Why Choose Us?</h3>
+                <div class="info-cards">
+                    <div class="info-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>Best Prices</h4>
+                        <p>Competitive pricing on all medical equipment</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-truck"></i>
+                        <h4>Free Delivery</h4>
+                        <p>Free delivery on orders over 500,000 CFA in Cameroon</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-headset"></i>
+                        <h4>Technical Support</h4>
+                        <p>Free installation and training on all major equipment</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>1 Year Warranty</h4>
+                        <p>Full warranty on all products</p>
+                    </div>
+                </div>
+            </div>
+            <div class="quote-form">
+                <h3>Get a Quote</h3>
+                <form id="medicalQuoteForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" id="quoteName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Institution/Hospital *</label>
+                            <input type="text" id="quoteInstitution" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" id="quoteEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" id="quotePhone" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Products Needed *</label>
+                        <textarea id="quoteProducts" rows="4" placeholder="Please list the equipment you need, quantities, and any specific requirements..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Budget Range</label>
+                        <select id="quoteBudget">
+                            <option value="">Select budget range</option>
+                            <option value="Under 500,000 CFA">Under 500,000 CFA</option>
+                            <option value="500,000 - 1,000,000 CFA">500,000 - 1,000,000 CFA</option>
+                            <option value="1,000,000 - 5,000,000 CFA">1,000,000 - 5,000,000 CFA</option>
+                            <option value="5,000,000+ CFA">5,000,000+ CFA</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Delivery Location</label>
+                        <input type="text" id="quoteLocation" placeholder="City/Region in Cameroon">
+                    </div>
+                    <button type="submit" class="btn-primary">Submit Quote Request</button>
+                </form>
+                <div id="quoteStatus"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="supabase-config.js"></script>
+<script src="script.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Quote | Royal Rock Medicals</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <h1>ROYAL ROCK <span></span></h1>
+            <p>Est. 2020</p>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="affiliate.html">🌿 Herbal Affiliate</a>
+            <a href="restaurant.html">🍽️ Royal Rock Dining</a>
+            <a href="medical.html" class="active">🏥 Royal Rock Medicals</a>
+            <a href="helpful-content.html">📚 Resources</a>
+            <a href="trust-guarantee.html">⭐ Trust</a>
+        </div>
+        <div class="nav-buttons">
+            <a href="affiliate-login.html" class="btn-login"><i class="fas fa-user"></i> Login</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="affiliate.html">Herbal Affiliate</a>
+        <a href="restaurant.html">Royal Rock Dining</a>
+        <a href="medical.html">Royal Rock Medicals</a>
+        <a href="helpful-content.html">Resources</a>
+        <a href="trust-guarantee.html">Trust</a>
+        <a href="affiliate-login.html">Login</a>
+    </div>
+</nav>
+
+<section class="menu-header reveal">
+    <div class="container">
+        <h1>Request a <span>Quote</span></h1>
+        <p>Tell us what equipment you need and we'll get back to you within 24 hours</p>
+        <a href="medical.html" class="btn-outline">← Back to Medicals</a>
+    </div>
+</section>
+
+<section class="quote-section reveal">
+    <div class="container">
+        <div class="quote-container">
+            <div class="quote-info">
+                <h3>Why Choose Us?</h3>
+                <div class="info-cards">
+                    <div class="info-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>Best Prices</h4>
+                        <p>Competitive pricing on all medical equipment</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-truck"></i>
+                        <h4>Free Delivery</h4>
+                        <p>Free delivery on orders over 500,000 CFA in Cameroon</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-headset"></i>
+                        <h4>Technical Support</h4>
+                        <p>Free installation and training on all major equipment</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>1 Year Warranty</h4>
+                        <p>Full warranty on all products</p>
+                    </div>
+                </div>
+            </div>
+            <div class="quote-form">
+                <h3>Get a Quote</h3>
+                <form id="medicalQuoteForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" id="quoteName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Institution/Hospital *</label>
+                            <input type="text" id="quoteInstitution" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" id="quoteEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" id="quotePhone" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Products Needed *</label>
+                        <textarea id="quoteProducts" rows="4" placeholder="Please list the equipment you need, quantities, and any specific requirements..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Budget Range</label>
+                        <select id="quoteBudget">
+                            <option value="">Select budget range</option>
+                            <option value="Under 500,000 CFA">Under 500,000 CFA</option>
+                            <option value="500,000 - 1,000,000 CFA">500,000 - 1,000,000 CFA</option>
+                            <option value="1,000,000 - 5,000,000 CFA">1,000,000 - 5,000,000 CFA</option>
+                            <option value="5,000,000+ CFA">5,000,000+ CFA</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Delivery Location</label>
+                        <input type="text" id="quoteLocation" placeholder="City/Region in Cameroon">
+                    </div>
+                    <button type="submit" class="btn-primary">Submit Quote Request</button>
+                </form>
+                <div id="quoteStatus"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="supabase-config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

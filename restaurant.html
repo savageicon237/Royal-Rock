@@ -6,6 +6,7 @@
     <title>Royal Rock Dining | Fine Dining Experience</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,17 +14,22 @@
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
-            <h1>ROYAL ROCK <span>CO.LTD</span></h1>
-            <p>Excellence Across Industries</p>
+            <h1>ROYAL ROCK <span></span></h1>
+            <p>Est. 2020</p>
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="affiliate.html">🌿 Herbal Affiliate</a>
             <a href="restaurant.html" class="active">🍽️ Royal Rock Dining</a>
             <a href="medical.html">🏥 Royal Rock Medicals</a>
+            <a href="helpful-content.html">📚 Resources</a>
+            <a href="trust-guarantee.html">⭐ Trust</a>
         </div>
-        <div class="mobile-menu" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
+        <div class="nav-buttons">
+            <a href="affiliate-login.html" class="btn-login"><i class="fas fa-user"></i> Login</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </div>
     <div class="mobile-nav" id="mobileNav">
@@ -31,37 +37,28 @@
         <a href="affiliate.html">Herbal Affiliate</a>
         <a href="restaurant.html">Royal Rock Dining</a>
         <a href="medical.html">Royal Rock Medicals</a>
+        <a href="helpful-content.html">Resources</a>
+        <a href="trust-guarantee.html">Trust</a>
+        <a href="affiliate-login.html">Login</a>
     </div>
 </nav>
 
-<section class="page-header restaurant-header">
+<!-- Hero Section -->
+<section class="page-header reveal">
     <div class="container">
-        <h1 class="immerse-text">Royal Rock Dining</h1>
+        <h1>Royal Rock <span>Dining</span></h1>
         <p>Where Culinary Excellence Meets Royal Ambiance</p>
-        <div class="header-buttons">
-            <a href="restaurant-menu.html" class="btn-primary">View Menu</a>
-            <a href="restaurant-reservation.html" class="btn-outline">Make Reservation</a>
+        <div class="hero-buttons">
+            <a href="restaurant-menu.html" class="btn-primary">View Full Menu</a>
+            <a href="restaurant-reservation.html" class="btn-outline">Make a Reservation</a>
         </div>
     </div>
 </section>
 
-<!-- Sub-pages Navigation -->
-<section class="subpage-nav">
+<!-- About Sub-page -->
+<section id="about" class="about-restaurant reveal">
     <div class="container">
-        <div class="subpage-links">
-            <a href="#about" class="subpage-link active" data-page="about">🏰 About Us</a>
-            <a href="#menu-preview" class="subpage-link" data-page="menu-preview">🍽️ Signature Dishes</a>
-            <a href="#ambiance" class="subpage-link" data-page="ambiance">✨ The Ambiance</a>
-            <a href="#events" class="subpage-link" data-page="events">🎉 Events & Catering</a>
-            <a href="#reservation" class="subpage-link" data-page="reservation">📅 Reserve a Table</a>
-        </div>
-    </div>
-</section>
-
-<!-- Sub-page: About -->
-<section id="about" class="subpage active">
-    <div class="container">
-        <div class="about-restaurant">
+        <div class="about-grid">
             <div class="about-content">
                 <h2>A Royal Dining Experience</h2>
                 <p>Royal Rock Dining brings you an unparalleled culinary journey where every dish tells a story. Our chefs combine traditional recipes with modern techniques to create unforgettable dining experiences.</p>
@@ -74,78 +71,84 @@
                     <div class="feature">
                         <i class="fas fa-map-marker-alt"></i>
                         <h4>Location</h4>
-                        <p>Commercial Avenue </p>
+                        <p>main entrance to the stadium, Commercial Ave, Bamenda </p>
                     </div>
                     <div class="feature">
                         <i class="fas fa-phone"></i>
                         <h4>Reservations</h4>
-                        <p>+237 683 525 177</p>
+                        <p>683525177 / 699998343</p>
                     </div>
                 </div>
             </div>
             <div class="about-image">
                 <!-- IMAGE: Add restaurant interior image here -->
-                <img src="images/restaurant-interior.jpg" alt="Royal Rock Dining Interior">
+                <img src="images/restaurant-interior.jpg" alt="Royal Rock Dining Interior" onerror="this.src='https://placehold.co/500x400/1a1a2e/c9a03d?text=Restaurant+Interior'">
             </div>
         </div>
     </div>
 </section>
 
-<!-- Sub-page: Menu Preview -->
-<section id="menu-preview" class="subpage">
+<!-- Signature Dishes Sub-page -->
+<section id="signature-dishes" class="signature-dishes reveal">
     <div class="container">
         <h2 class="section-title">Signature <span>Dishes</span></h2>
-        <div class="menu-grid">
-            <div class="menu-item-card">
-                <!-- IMAGE: Add dish 1 image here -->
-                <img src="images/dish1.jpg" alt="Grilled Lamb Chops">
-                <div class="menu-item-info">
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <!-- IMAGE: Add dish 1 image here -->
+                    <img src="images/dish1.jpg" alt="Grilled Lamb Chops" onerror="this.src='https://placehold.co/300x220/1a1a2e/c9a03d?text=Grilled+Lamb'">
+                </div>
+                <div class="product-info">
                     <h3>Grilled Lamb Chops</h3>
                     <p>Herb-marinated lamb chops with mint sauce</p>
-                    <div class="price">15,000 CFA</div>
+                    <div class="product-price">15,000 CFA</div>
                 </div>
             </div>
-            <div class="menu-item-card">
-                <!-- IMAGE: Add dish 2 image here -->
-                <img src="images/dish2.jpg" alt="Seafood Platter">
-                <div class="menu-item-info">
+            <div class="product-card">
+                <div class="product-image">
+                    <!-- IMAGE: Add dish 2 image here -->
+                    <img src="images/dish2.jpg" alt="Seafood Platter" onerror="this.src='https://placehold.co/300x220/1a1a2e/c9a03d?text=Seafood+Platter'">
+                </div>
+                <div class="product-info">
                     <h3>Royal Seafood Platter</h3>
                     <p>Fresh lobster, prawns, and calamari</p>
-                    <div class="price">25,000 CFA</div>
+                    <div class="product-price">25,000 CFA</div>
                 </div>
             </div>
-            <div class="menu-item-card">
-                <!-- IMAGE: Add dish 3 image here -->
-                <img src="images/dish3.jpg" alt="Truffle Pasta">
-                <div class="menu-item-info">
+            <div class="product-card">
+                <div class="product-image">
+                    <!-- IMAGE: Add dish 3 image here -->
+                    <img src="images/dish3.jpg" alt="Truffle Pasta" onerror="this.src='https://placehold.co/300x220/1a1a2e/c9a03d?text=Truffle+Pasta'">
+                </div>
+                <div class="product-info">
                     <h3>Truffle Mushroom Pasta</h3>
                     <p>Handmade pasta with black truffle</p>
-                    <div class="price">12,000 CFA</div>
+                    <div class="product-price">12,000 CFA</div>
                 </div>
             </div>
         </div>
         <div class="text-center">
-            <a href="restaurant-menu.html" class="btn-primary">Full Menu →</a>
+            <a href="restaurant-menu.html" class="btn-primary">View Full Menu →</a>
         </div>
     </div>
 </section>
 
-<!-- Sub-page: Ambiance -->
-<section id="ambiance" class="subpage">
+<!-- Ambiance Gallery Sub-page -->
+<section id="ambiance" class="ambiance-gallery reveal">
     <div class="container">
         <h2 class="section-title">The <span>Ambiance</span></h2>
-        <div class="ambiance-gallery">
+        <div class="gallery-grid">
             <!-- IMAGES: Add ambiance images here -->
-            <div class="gallery-item"><img src="images/ambiance1.jpg" alt="Dining Area"></div>
-            <div class="gallery-item"><img src="images/ambiance2.jpg" alt="Bar Area"></div>
-            <div class="gallery-item"><img src="images/ambiance3.jpg" alt="Outdoor Seating"></div>
-            <div class="gallery-item"><img src="images/ambiance4.jpg" alt="Private Dining"></div>
+            <div class="gallery-item"><img src="images/ambiance1.jpg" alt="Dining Area" onerror="this.src='https://placehold.co/300x300/1a1a2e/c9a03d?text=Dining+Area'"></div>
+            <div class="gallery-item"><img src="images/ambiance2.jpg" alt="Bar Area" onerror="this.src='https://placehold.co/300x300/1a1a2e/c9a03d?text=Bar+Area'"></div>
+            <div class="gallery-item"><img src="images/ambiance3.jpg" alt="Outdoor Seating" onerror="this.src='https://placehold.co/300x300/1a1a2e/c9a03d?text=Outdoor+Seating'"></div>
+            <div class="gallery-item"><img src="images/ambiance4.jpg" alt="Private Dining" onerror="this.src='https://placehold.co/300x300/1a1a2e/c9a03d?text=Private+Dining'"></div>
         </div>
     </div>
 </section>
 
-<!-- Sub-page: Events -->
-<section id="events" class="subpage">
+<!-- Events Sub-page -->
+<section id="events" class="events-section reveal">
     <div class="container">
         <h2 class="section-title">Events & <span>Catering</span></h2>
         <div class="events-grid">
@@ -173,63 +176,35 @@
     </div>
 </section>
 
-<!-- Sub-page: Reservation -->
-<section id="reservation" class="subpage">
+<footer>
     <div class="container">
-        <h2 class="section-title">Reserve a <span>Table</span></h2>
-        <div class="reservation-form-container">
-            <form id="restaurantReservationForm">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" id="resName" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone Number</label>
-                        <input type="tel" id="resPhone" required>
-                    </div>
+        <div class="footer-grid">
+            <div class="footer-about">
+                <h3>ROYAL ROCK <span></span></h3>
+                <p>Experience fine dining at its best.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Date</label>
-                        <input type="date" id="resDate" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Time</label>
-                        <select id="resTime">
-                            <option>6:00 PM</option>
-                            <option>7:00 PM</option>
-                            <option>8:00 PM</option>
-                            <option>9:00 PM</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Number of Guests</label>
-                        <input type="number" id="resGuests" min="1" max="20">
-                    </div>
-                    <div class="form-group">
-                        <label>Occasion</label>
-                        <select id="resOccasion">
-                            <option>Casual Dining</option>
-                            <option>Birthday</option>
-                            <option>Anniversary</option>
-                            <option>Business Meeting</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Special Requests</label>
-                    <textarea id="resRequests" rows="3" placeholder="Dietary restrictions, allergies, etc."></textarea>
-                </div>
-                <button type="submit" class="btn-primary">Confirm Reservation</button>
-            </form>
-            <div id="reservationStatus"></div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="restaurant-menu.html">Menu</a>
+                <a href="restaurant-reservation.html">Reservations</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 683525177 / 699998343</p>
+                <p><i class="fas fa-map-marker-alt"></i> Bamenda, Cameroon</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Royal Rock  - Royal Rock Dining</p>
         </div>
     </div>
-</section>
+</footer>
 
+<script src="supabase-config.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

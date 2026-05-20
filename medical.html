@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal Rock Medicals | Quality Medical Equipment</title>
+    <title>Royal Rock Medicals | Premium Medical Equipment</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,17 +14,22 @@
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
-            <h1>ROYAL ROCK <span>CO.LTD</span></h1>
-            <p>Excellence Across Industries</p>
+            <h1>ROYAL ROCK <span></span></h1>
+            <p>Est. 2020</p>
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="affiliate.html">🌿 Herbal Affiliate</a>
             <a href="restaurant.html">🍽️ Royal Rock Dining</a>
             <a href="medical.html" class="active">🏥 Royal Rock Medicals</a>
+            <a href="helpful-content.html">📚 Resources</a>
+            <a href="trust-guarantee.html">⭐ Trust</a>
         </div>
-        <div class="mobile-menu" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
+        <div class="nav-buttons">
+            <a href="affiliate-login.html" class="btn-login"><i class="fas fa-user"></i> Login</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </div>
     <div class="mobile-nav" id="mobileNav">
@@ -31,80 +37,71 @@
         <a href="affiliate.html">Herbal Affiliate</a>
         <a href="restaurant.html">Royal Rock Dining</a>
         <a href="medical.html">Royal Rock Medicals</a>
+        <a href="helpful-content.html">Resources</a>
+        <a href="trust-guarantee.html">Trust</a>
+        <a href="affiliate-login.html">Login</a>
     </div>
 </nav>
 
-<section class="page-header medical-header">
+<!-- Hero Section -->
+<section class="page-header reveal">
     <div class="container">
-        <h1 class="immerse-text">Royal Rock Medicals</h1>
-        <p>Premium Medical Equipment & Supplies</p>
-        <div class="header-buttons">
-            <a href="medical-products.html" class="btn-primary">Shop Now</a>
-            <a href="medical-contact.html" class="btn-outline">Contact Sales</a>
+        <h1>Royal Rock <span>Medicals</span></h1>
+        <p>Premium Medical Equipment & Supplies for Healthcare Professionals</p>
+        <div class="hero-buttons">
+            <a href="medical-products.html" class="btn-primary">Shop Equipment</a>
+            <a href="medical-contact.html" class="btn-outline">Request Quote</a>
         </div>
     </div>
 </section>
 
-<!-- Sub-pages Navigation -->
-<section class="subpage-nav">
+<!-- Products Sub-page -->
+<section id="products" class="medical-products reveal">
     <div class="container">
-        <div class="subpage-links">
-            <a href="#products" class="subpage-link active" data-page="products">🏥 Medical Equipment</a>
-            <a href="#categories" class="subpage-link" data-page="categories">📦 Categories</a>
-            <a href="#why-us" class="subpage-link" data-page="why-us">⭐ Why Choose Us</a>
-            <a href="#partners" class="subpage-link" data-page="partners">🤝 Partners</a>
-            <a href="#quote" class="subpage-link" data-page="quote">📋 Request Quote</a>
-        </div>
-    </div>
-</section>
-
-<!-- Sub-page: Products -->
-<section id="products" class="subpage active">
-    <div class="container">
-        <h2 class="section-title">Medical <span>Equipment</span></h2>
+        <h2 class="section-title">Featured <span>Equipment</span></h2>
         <div class="medical-products-grid">
             <div class="medical-card">
                 <div class="medical-image">
-                    <!-- IMAGE: Add product 1 image here -->
-                    <img src="images/medical1.jpg" alt="Patient Monitor">
+                    <!-- IMAGE: Add medical product 1 image here -->
+                    <img src="images/medical1.jpg" alt="Patient Monitor" onerror="this.src='https://placehold.co/300x220/1a1a2e/c9a03d?text=Patient+Monitor'">
                 </div>
                 <div class="medical-info">
                     <h3>Patient Monitor</h3>
-                    <p>Multi-parameter patient monitoring system</p>
+                    <p>Multi-parameter patient monitoring system with touchscreen display</p>
                     <div class="price">850,000 CFA</div>
-                    <button class="btn-small">Request Quote</button>
+                    <a href="medical-contact.html" class="btn-small">Request Quote</a>
                 </div>
             </div>
             <div class="medical-card">
                 <div class="medical-image">
-                    <!-- IMAGE: Add product 2 image here -->
-                    <img src="images/medical2.jpg" alt="Ultrasound Machine">
+                    <!-- IMAGE: Add medical product 2 image here -->
+                    <img src="images/medical2.jpg" alt="Ultrasound Machine" onerror="this.src='https://placehold.co/300x220/1a1a2e/c9a03d?text=Ultrasound'">
                 </div>
                 <div class="medical-info">
                     <h3>Ultrasound Machine</h3>
-                    <p>Portable ultrasound with color doppler</p>
+                    <p>Portable ultrasound with color doppler and 3D/4D imaging</p>
                     <div class="price">2,500,000 CFA</div>
-                    <button class="btn-small">Request Quote</button>
+                    <a href="medical-contact.html" class="btn-small">Request Quote</a>
                 </div>
             </div>
             <div class="medical-card">
                 <div class="medical-image">
-                    <!-- IMAGE: Add product 3 image here -->
-                    <img src="images/medical3.jpg" alt="Surgical Lights">
+                    <!-- IMAGE: Add medical product 3 image here -->
+                    <img src="images/medical3.jpg" alt="Surgical Lights" onerror="this.src='https://placehold.co/300x220/1a1a2e/c9a03d?text=Surgical+Lights'">
                 </div>
                 <div class="medical-info">
                     <h3>Surgical LED Lights</h3>
-                    <p>Shadowless surgical lighting system</p>
+                    <p>Shadowless surgical lighting system with adjustable intensity</p>
                     <div class="price">1,200,000 CFA</div>
-                    <button class="btn-small">Request Quote</button>
+                    <a href="medical-contact.html" class="btn-small">Request Quote</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Sub-page: Categories -->
-<section id="categories" class="subpage">
+<!-- Categories Sub-page -->
+<section id="categories" class="categories-section reveal">
     <div class="container">
         <h2 class="section-title">Product <span>Categories</span></h2>
         <div class="categories-grid">
@@ -116,7 +113,7 @@
             <div class="category-card">
                 <i class="fas fa-syringe"></i>
                 <h3>Surgical Instruments</h3>
-                <p>Surgical lights, tables, and instruments</p>
+                <p>Surgical lights, tables, and precision instruments</p>
             </div>
             <div class="category-card">
                 <i class="fas fa-wheelchair"></i>
@@ -135,27 +132,27 @@
             </div>
             <div class="category-card">
                 <i class="fas fa-truck"></i>
-                <h3>Furniture</h3>
-                <p>Hospital beds, stretchers, cabinets</p>
+                <h3>Hospital Furniture</h3>
+                <p>Hospital beds, stretchers, medical cabinets</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Sub-page: Why Us -->
-<section id="why-us" class="subpage">
+<!-- Why Us Sub-page -->
+<section id="why-us" class="why-medical reveal">
     <div class="container">
         <h2 class="section-title">Why Choose <span>Royal Rock Medicals</span></h2>
         <div class="why-grid">
             <div class="why-card">
                 <i class="fas fa-certificate"></i>
                 <h3>Certified Products</h3>
-                <p>All equipment meets international quality standards</p>
+                <p>All equipment meets international quality standards (CE, FDA, ISO)</p>
             </div>
             <div class="why-card">
                 <i class="fas fa-wrench"></i>
                 <h3>Warranty & Service</h3>
-                <p>12-month warranty with after-sales support</p>
+                <p>12-month warranty with after-sales technical support</p>
             </div>
             <div class="why-card">
                 <i class="fas fa-tachometer-alt"></i>
@@ -165,71 +162,41 @@
             <div class="why-card">
                 <i class="fas fa-user-md"></i>
                 <h3>Expert Consultation</h3>
-                <p>Free consultation to help you choose right equipment</p>
+                <p>Free consultation to help you choose the right equipment</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Sub-page: Partners -->
-<section id="partners" class="subpage">
+<footer>
     <div class="container">
-        <h2 class="section-title">Trusted <span>Partners</span></h2>
-        <div class="partners-grid">
-            <div class="partner-logo">🏥 Banso Baptist Hospital</div>
-            <div class="partner-logo">🏥 Regional Hospital Bamenda</div>
-            <div class="partner-logo">🏥 St. Louis University Hospital</div>
-            <div class="partner-logo">🏥 Nkwen Baptist Hospital</div>
+        <div class="footer-grid">
+            <div class="footer-about">
+                <h3>ROYAL ROCK <span></span></h3>
+                <p>Quality medical equipment for healthcare excellence.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="medical-products.html">Shop All</a>
+                <a href="medical-contact.html">Request Quote</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 683525177 / 699998343</p>
+                <p><i class="fas fa-envelope"></i> medical@royalrock.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Royal Rock  - Royal Rock Medicals</p>
         </div>
     </div>
-</section>
+</footer>
 
-<!-- Sub-page: Quote Request -->
-<section id="quote" class="subpage">
-    <div class="container">
-        <h2 class="section-title">Request a <span>Quote</span></h2>
-        <div class="quote-form-container">
-            <form id="medicalQuoteForm">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" id="quoteName" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Institution/Hospital</label>
-                        <input type="text" id="quoteInstitution" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" id="quoteEmail" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input type="tel" id="quotePhone" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Products Needed</label>
-                    <textarea id="quoteProducts" rows="3" placeholder="List the equipment you need..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Budget Range</label>
-                    <select id="quoteBudget">
-                        <option>Under 500,000 CFA</option>
-                        <option>500,000 - 1,000,000 CFA</option>
-                        <option>1,000,000 - 5,000,000 CFA</option>
-                        <option>5,000,000+ CFA</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-primary">Submit Quote Request</button>
-            </form>
-            <div id="quoteStatus"></div>
-        </div>
-    </div>
-</section>
-
+<script src="supabase-config.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

@@ -3,35 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal Rock CO.LTD | Multi-Business Excellence</title>
+    <title>Royal Rock  | Excellence Across Industries</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
-<!-- 3D Particle Background -->
-<div id="particle-canvas"></div>
+<!-- 3D Particle Canvas -->
+<canvas id="particleCanvas"></canvas>
 
 <!-- Exploding Objects Container -->
 <div class="explosion-container" id="explosionContainer"></div>
 
-<!-- Navbar -->
+<!-- Navigation -->
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
-            <h1>ROYAL ROCK <span>CO.LTD</span></h1>
-            <p>Excellence Across Industries</p>
+            <h1>ROYAL ROCK <span></span></h1>
+            <p>Est. 2020</p>
         </div>
         <div class="nav-links">
             <a href="index.html" class="active">Home</a>
             <a href="affiliate.html">🌿 Herbal Affiliate</a>
             <a href="restaurant.html">🍽️ Royal Rock Dining</a>
             <a href="medical.html">🏥 Royal Rock Medicals</a>
+            <a href="helpful-content.html">📚 Resources</a>
+            <a href="trust-guarantee.html">⭐ Trust</a>
         </div>
-        <div class="mobile-menu" onclick="toggleMenu()">
-            <i class="fas fa-bars">Menu</i>
+        <div class="nav-buttons">
+            <a href="affiliate-login.html" class="btn-login"><i class="fas fa-user"></i> Login</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </div>
     <div class="mobile-nav" id="mobileNav">
@@ -39,46 +44,55 @@
         <a href="affiliate.html">Herbal Affiliate</a>
         <a href="restaurant.html">Royal Rock Dining</a>
         <a href="medical.html">Royal Rock Medicals</a>
+        <a href="helpful-content.html">Resources</a>
+        <a href="trust-guarantee.html">Trust</a>
+        <a href="affiliate-login.html">Login</a>
     </div>
 </nav>
 
-<!-- Hero Section with 3D Slider -->
-<section class="hero">
-    <div class="hero-slider">
+<!-- 3D Slider Hero -->
+<section class="hero-slider-section">
+    <div class="slider-container">
         <div class="slide active" data-slide="0">
             <div class="slide-content">
-                <span class="slide-tag">Earn 15% Commission</span>
-                <h1 class="immerse-text">Herbal Affiliate Program</h1>
-                <p>Join our affiliate network and earn 15% commission on every referral. Share natural wellness products and grow your income.</p>
-                <a href="affiliate.html" class="btn-primary">Join Now →</a>
+                <span class="slide-badge">🌿 Earn 12% Commission</span>
+                <h1 class="immerse-text">Herbal Affiliate<br><span>Program</span></h1>
+                <p>Join our affiliate network and earn 12% commission on every referral. Natural wellness products with global shipping.</p>
+                <a href="affiliate.html" class="btn-primary">Learn More →</a>
             </div>
             <div class="slide-image">
-                <!-- IMAGE: Add your herbal products image here -->
-                <img src="images/2.jpg" alt="Herbal Products">
+                <div class="image-wrapper">
+                    <!-- IMAGE: Add herbal products image here -->
+                    <img src="images/herbal-bg.jpg" alt="Herbal Products" onerror="this.src='https://placehold.co/600x500/1a1a2e/c9a03d?text=Herbal+Products'">
+                </div>
             </div>
         </div>
         <div class="slide" data-slide="1">
             <div class="slide-content">
-                <span class="slide-tag">Fine Dining Experience</span>
-                <h1 class="immerse-text">Royal Rock Dining</h1>
+                <span class="slide-badge">🍽️ Fine Dining Experience</span>
+                <h1 class="immerse-text">Royal Rock<br><span>Dining</span></h1>
                 <p>Experience culinary excellence at its finest. Premium dining with breathtaking views and exquisite cuisine.</p>
                 <a href="restaurant.html" class="btn-primary">Explore Menu →</a>
             </div>
             <div class="slide-image">
-                <!-- IMAGE: Add your restaurant image here -->
-                <img src="images/4.jpg" alt="Royal Rock Dining">
+                <div class="image-wrapper">
+                    <!-- IMAGE: Add restaurant image here -->
+                    <img src="images/restaurant-bg.jpg" alt="Royal Rock Dining" onerror="this.src='https://placehold.co/600x500/1a1a2e/c9a03d?text=Royal+Rock+Dining'">
+                </div>
             </div>
         </div>
         <div class="slide" data-slide="2">
             <div class="slide-content">
-                <span class="slide-tag">Quality Medical Equipment</span>
-                <h1 class="immerse-text">Royal Rock Medicals</h1>
+                <span class="slide-badge">🏥 Quality Medical Equipment</span>
+                <h1 class="immerse-text">Royal Rock<br><span>Medicals</span></h1>
                 <p>Premium medical equipment and supplies for healthcare professionals. Quality you can trust.</p>
                 <a href="medical.html" class="btn-primary">Shop Now →</a>
             </div>
             <div class="slide-image">
-                <!-- IMAGE: Add your medical equipment image here -->
-                <img src="images/3.jpg" alt="Medical Equipment">
+                <div class="image-wrapper">
+                    <!-- IMAGE: Add medical equipment image here -->
+                    <img src="images/medical-bg.jpg" alt="Medical Equipment" onerror="this.src='https://placehold.co/600x500/1a1a2e/c9a03d?text=Medical+Equipment'">
+                </div>
             </div>
         </div>
     </div>
@@ -93,22 +107,22 @@
     </div>
 </section>
 
-<!-- Business Cards Section -->
-<section class="business-cards">
+<!-- Business Cards -->
+<section class="business-cards reveal">
     <div class="container">
         <h2 class="section-title">Our <span>Divisions</span></h2>
         <div class="cards-grid">
-            <div class="business-card" data-business="affiliate">
+            <div class="card" data-business="affiliate">
                 <div class="card-icon"><i class="fas fa-leaf"></i></div>
-                <h3>Herbal Affiliate Program</h3>
-                <p>Earn 15% commission on every referral. Natural wellness products with global shipping.</p>
+                <h3>Herbal Affiliate</h3>
+                <p>Earn 12% commission on every referral. Natural wellness products with global shipping.</p>
                 <div class="card-stats">
                     <span><i class="fas fa-users"></i> 500+ Affiliates</span>
-                    <span><i class="fas fa-chart-line"></i> 15% Commission</span>
+                    <span><i class="fas fa-chart-line"></i> 12% Commission</span>
                 </div>
-                <a href="affiliate.html" class="card-link">Learn More →</a>
+                <a href="affiliate.html" class="card-link">Join Now →</a>
             </div>
-            <div class="business-card" data-business="restaurant">
+            <div class="card" data-business="restaurant">
                 <div class="card-icon"><i class="fas fa-utensils"></i></div>
                 <h3>Royal Rock Dining</h3>
                 <p>Fine dining restaurant offering exquisite cuisine, romantic ambiance, and exceptional service.</p>
@@ -116,15 +130,15 @@
                     <span><i class="fas fa-star"></i> 4.8 Rating</span>
                     <span><i class="fas fa-clock"></i> 8am - 10pm</span>
                 </div>
-                <a href="restaurant.html" class="card-link">Explore Menu →</a>
+                <a href="restaurant.html" class="card-link">Explore →</a>
             </div>
-            <div class="business-card" data-business="medical">
+            <div class="card" data-business="medical">
                 <div class="card-icon"><i class="fas fa-stethoscope"></i></div>
                 <h3>Royal Rock Medicals</h3>
                 <p>Premium medical equipment and supplies for hospitals, clinics, and healthcare professionals.</p>
                 <div class="card-stats">
                     <span><i class="fas fa-truck"></i> Fast Delivery</span>
-                    <span><i class="fas fa-shield-alt"></i> Certified Products</span>
+                    <span><i class="fas fa-shield-alt"></i> Certified</span>
                 </div>
                 <a href="medical.html" class="card-link">Shop Now →</a>
             </div>
@@ -132,25 +146,25 @@
     </div>
 </section>
 
-<!-- Stats Counter Section -->
-<section class="stats-section">
+<!-- Stats Counter -->
+<section class="stats-section reveal">
     <div class="container">
         <div class="stats-grid">
             <div class="stat-item">
                 <h3 class="counter" data-target="500">0</h3>
-                <p>Happy Affiliates</p>
+                <p>Active Affiliates</p>
             </div>
             <div class="stat-item">
                 <h3 class="counter" data-target="10000">0</h3>
-                <p>Customers Served</p>
+                <p>Happy Customers</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="counter" data-target="100">0</h3>
+                <p>Herbal Products</p>
             </div>
             <div class="stat-item">
                 <h3 class="counter" data-target="50">0</h3>
                 <p>Medical Partners</p>
-            </div>
-            <div class="stat-item">
-                <h3 class="counter" data-target="100">0</h3>
-                <p>Dishes Served Daily</p>
             </div>
         </div>
     </div>
@@ -161,35 +175,36 @@
     <div class="container">
         <div class="footer-grid">
             <div class="footer-about">
-                <h3>ROYAL ROCK <span>CO.LTD</span></h3>
+                <h3>ROYAL ROCK <span></span></h3>
                 <p>Excellence across three industries - Herbal Products, Fine Dining, and Medical Equipment.</p>
                 <div class="footer-social">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
             <div class="footer-links">
                 <h4>Quick Links</h4>
-                <a href="affiliate.html">Herbal Affiliate</a>
-                <a href="restaurant.html">Royal Rock Dining</a>
-                <a href="medical.html">Royal Rock Medicals</a>
-                <a href="affiliate-register.html">Register as Affiliate</a>
+                <a href="affiliate.html">Become Affiliate</a>
+                <a href="restaurant.html">Make Reservation</a>
+                <a href="medical.html">Shop Medical</a>
+                <a href="helpful-content.html">Resources</a>
+                <a href="trust-guarantee.html">Trust & Guarantee</a>
             </div>
             <div class="footer-contact">
                 <h4>Contact</h4>
-                <p><i class="fas fa-phone"></i> +237 683 525 177</p>
+                <p><i class="fas fa-phone"></i> 683525177 / 699998343</p>
                 <p><i class="fas fa-envelope"></i> info@royalrock.com</p>
                 <p><i class="fas fa-map-marker-alt"></i> Bamenda, Cameroon</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Royal Rock CO.LTD - All Rights Reserved</p>
+            <p>&copy; 2025 Royal Rock  - All Rights Reserved</p>
         </div>
     </div>
 </footer>
 
+<script src="supabase-config.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

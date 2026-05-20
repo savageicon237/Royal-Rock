@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop to Qualify | Royal Rock Affiliate</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <h1>ROYAL ROCK <span></span></h1>
+            <p>Est. 2020</p>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="affiliate.html" class="active">🌿 Herbal Affiliate</a>
+            <a href="restaurant.html">🍽️ Royal Rock Dining</a>
+            <a href="medical.html">🏥 Royal Rock Medicals</a>
+            <a href="helpful-content.html">📚 Resources</a>
+            <a href="trust-guarantee.html">⭐ Trust</a>
+        </div>
+        <div class="nav-buttons">
+            <a href="affiliate-login.html" class="btn-login"><i class="fas fa-user"></i> Login</a>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="affiliate.html">Herbal Affiliate</a>
+        <a href="restaurant.html">Royal Rock Dining</a>
+        <a href="medical.html">Royal Rock Medicals</a>
+        <a href="helpful-content.html">Resources</a>
+        <a href="trust-guarantee.html">Trust</a>
+        <a href="affiliate-login.html">Login</a>
+    </div>
+</nav>
+
+<!-- Shop Header -->
+<section class="shop-header reveal">
+    <div class="container">
+        <h1>Purchase to <span>Qualify</span></h1>
+        <p>Minimum purchase of <strong>100,000 CFA</strong> required to become an affiliate</p>
+        <div class="progress-container">
+            <div class="progress-label">
+                <span>Your Cart Total</span>
+                <span id="cartTotalDisplay">0 CFA</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <div class="progress-message" id="progressMessage">
+                Add products worth 100,000 CFA to qualify for affiliate program
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Grid -->
+<section class="shop-products reveal">
+    <div class="container">
+        <h2 class="section-title">Our <span>Products</span></h2>
+        <div class="products-grid" id="shopProductsGrid"></div>
+    </div>
+</section>
+
+<!-- Cart Sidebar -->
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h3>Your Cart</h3>
+        <button class="close-cart" onclick="toggleCart()">×</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cartTotal">0 CFA</span>
+        </div>
+        <button class="btn-primary" id="checkoutBtn" onclick="checkout()">Proceed to Checkout</button>
+        <p class="cart-note">Minimum 100,000 CFA required to qualify for affiliate program</p>
+    </div>
+</div>
+
+<div class="cart-icon" onclick="toggleCart()">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-count" id="cartCount">0</span>
+</div>
+
+<!-- Checkout Modal -->
+<div class="modal" id="checkoutModal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <h2>Complete Your Order</h2>
+        <form id="checkoutForm">
+            <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="checkoutName" required>
+            </div>
+            <div class="form-group">
+                <label>Email Address *</label>
+                <input type="email" id="checkoutEmail" required>
+            </div>
+            <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="tel" id="checkoutPhone" required>
+            </div>
+            <div class="form-group">
+                <label>Delivery Address</label>
+                <textarea id="checkoutAddress" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Payment Method</label>
+                <select id="paymentMethod">
+                    <option value="mtn">MTN Mobile Money</option>
+                    <option value="orange">Orange Money</option>
+                    <option value="bank">Bank Transfer</option>
+                </select>
+            </div>
+            <div class="order-summary">
+                <h4>Order Summary</h4>
+                <div id="orderSummary"></div>
+                <div class="total"><strong>Total:</strong> <span id="orderTotal">0 CFA</span></div>
+            </div>
+            <div class="form-group checkbox">
+                <input type="checkbox" id="termsCheckbox" required>
+                <label>I agree to the terms and conditions</label>
+            </div>
+            <button type="submit" class="btn-primary">Place Order</button>
+        </form>
+    </div>
+</div>
+
+<script src="supabase-config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
