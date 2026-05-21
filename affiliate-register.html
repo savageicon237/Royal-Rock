@@ -72,24 +72,115 @@
 </div>
 
 <script>
-// Check if this is the first user and show helpful message
-async function checkFirstUser() {
-    if (typeof supabase !== 'undefined') {
-        const { count } = await supabase
-            .from('users')
-            .select('*', { count: 'exact', head: true });
+// ============ REGISTRATION WITH LOCAL DATABASE ============
+const registerForm = document.getElementById('affiliateRegisterForm');
+if (registerForm) {
+    registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
         
-        const helperText = document.getElementById('referralHelper');
-        if (count === 0) {
-            helperText.innerHTML = '<span style="color: #22c55e;">✓ You are the first user! No referral code needed.</span>';
-            document.getElementById('regReferralCode').required = false;
-            document.getElementById('regReferralCode').placeholder = 'First user - leave blank';
-        } else {
-            helperText.innerHTML = '<span style="color: #f59e0b;">Enter the referral code from the person who invited you</span>';
+        const fullName = document.getElementById('regFullName').value;
+        const email = document.getElementById('regEmail').value;
+        const phone = document.getElementById('regPhone').value;
+        const username = document.getElementById('regUsername').value;
+        const referralCode = document.getElementById('regReferralCode').value;
+        const password = document.getElementById('regPassword').value;
+        const confirmPassword = document.getElementById('regConfirmPassword').value;
+        
+        // Validation
+        if (password !== confirmPassword) {
+            showNotification('Passwords do not match!', 'error');
+            return;
         }
-    }
+        
+        // Check if user already exists
+        const existingUserByEmail = await localDB.getUserByEmail(email);
+        if (existingUserByEmail) {
+            showNotification('Email already registered!', 'error');
+            return;
+        }
+        
+        const existingUserByUsername = await localDB.getUserByUsername(username);
+        if (existingUserByUsername) {
+            showNotification('Username already taken!', 'error');
+            return;
+        }
+        
+        // Get user count to check if this is first user
+        const userCount = await localDB.getUserCount();
+        let isFirstUser = (userCount === 0);
+        let referrer = null;
+        
+        // If NOT first user, validate referral code
+        if (!isFirstUser) {
+            if (!referralCode) {
+                showNotification('Referral code is required!', 'error');
+                return;
+            }
+            
+            referrer = await localDB.getUserByReferralCode(referralCode);
+            if (!referrer) {
+                showNotification('Invalid referral code! Please enter a valid code.', 'error');
+                return;
+            }
+        }
+        
+        // Generate new referral code for this user
+        const newReferralCode = generateReferralCode();
+        
+        // Create new user
+        const newUser = await localDB.createUser({
+            email: email,
+            username: username,
+            full_name: fullName,
+            phone: phone,
+            password: btoa(password),
+            referral_code: newReferralCode,
+            referred_by: referrer ? referrer.id : null,
+            has_purchased: false,
+            total_purchased: 0
+        });
+        
+        // Create affiliate record
+        await localDB.createAffiliate({
+            id: newUser.id,
+            referral_code: newReferralCode,
+            total_earnings: 0,
+            total_sales: 0,
+            total_referrals: 0,
+            available_balance: 0,
+            joined_at: new Date().toISOString()
+        });
+        
+        // If referred by someone, add commission for referrer
+        if (referrer) {
+            await localDB.createCommission({
+                affiliate_id: referrer.id,
+                amount: 5000,
+                type: 'referral_bonus',
+                description: `New affiliate registration: ${email}`
+            });
+            
+            // Update referrer's stats
+            const referrerAffiliate = await localDB.getAffiliateByUserId(referrer.id);
+            if (referrerAffiliate) {
+                await localDB.updateAffiliate(referrer.id, {
+                    total_referrals: (referrerAffiliate.total_referrals || 0) + 1,
+                    total_earnings: (referrerAffiliate.total_earnings || 0) + 5000,
+                    available_balance: (referrerAffiliate.available_balance || 0) + 5000
+                });
+            }
+        }
+        
+        showNotification(`✅ Registration successful! Your referral code is: ${newReferralCode}`, 'success');
+        
+        // Auto login
+        setSession(newUser, true);
+        
+        setTimeout(() => {
+            window.location.href = 'affiliate-dashboard.html';
+        }, 2000);
+    });
 }
-checkFirstUser();
 </script>
             </div>
             <div class="register-form">

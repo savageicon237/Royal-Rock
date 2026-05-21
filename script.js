@@ -524,6 +524,38 @@ if (registerForm) {
             window.location.href = 'affiliate-dashboard.html';
         }, 2000);
     });
+}// ============ LOGIN WITH LOCAL DATABASE ============
+const loginForm = document.getElementById('loginForm');
+if (loginForm) {
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const loginInput = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
+        const rememberMe = document.getElementById('rememberMe')?.checked || false;
+        
+        const users = await localDB.getUsers();
+        const user = users.find(u => 
+            (u.email === loginInput || u.username === loginInput) && 
+            u.password === btoa(password)
+        );
+        
+        if (!user) {
+            showNotification('Invalid username/email or password', 'error');
+            return;
+        }
+        
+        setSession(user, rememberMe);
+        showNotification('Login successful! Redirecting...', 'success');
+        
+        setTimeout(() => {
+            if (user.has_purchased) {
+                window.location.href = 'affiliate-dashboard.html';
+            } else {
+                window.location.href = 'affiliate-shop.html';
+            }
+        }, 1500);
+    });
 }
             
             // Check if user has purchased 100k+
