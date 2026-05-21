@@ -3,211 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Affiliate Registration | Royal Rock </title>
+    <title>Affiliate Registration | Royal Rock CO.LTD</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            color: white;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 5%;
+            border-bottom: 1px solid rgba(201, 160, 61, 0.3);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+        }
+        .logo h1 span { color: #c9a03d; }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: #c9a03d; }
+        .register-section {
+            padding: 120px 5% 80px;
+        }
+        .register-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .register-info {
+            background: linear-gradient(135deg, #a67c00, #c9a03d);
+            padding: 40px;
+        }
+        .register-info h1 { font-size: 2rem; margin-bottom: 20px; }
+        .commission-chart {
+            background: rgba(0,0,0,0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .commission-chart h3 { margin-bottom: 15px; }
+        .commission-level {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .commission-level:last-child { border-bottom: none; }
+        .level { font-weight: bold; }
+        .percent { color: #1a1a2e; font-weight: bold; font-size: 1.2rem; }
+        .register-info ul { list-style: none; margin-top: 20px; }
+        .register-info li { margin: 15px 0; display: flex; align-items: center; gap: 10px; }
+        .register-info li i { color: #1a1a2e; }
+        .register-form {
+            padding: 40px;
+        }
+        .register-form h2 { margin-bottom: 20px; color: #c9a03d; }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            color: white;
+            font-family: inherit;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #c9a03d;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .checkbox input {
+            width: auto;
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #c9a03d, #ffd700);
+            color: #1a1a2e;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(201,160,61,0.3);
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .login-link a {
+            color: #c9a03d;
+            text-decoration: none;
+        }
+        .helper-text {
+            font-size: 0.7rem;
+            color: #22c55e;
+            margin-top: 5px;
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .register-container {
+                grid-template-columns: 1fr;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
-            <h1>ROYAL ROCK <span></span></h1>
-            <p>Est. 2020</p>
+            <h1>ROYAL ROCK <span>CO.LTD</span></h1>
         </div>
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="affiliate.html">🌿 Herbal Affiliate</a>
-            <a href="restaurant.html">🍽️ Royal Rock Dining</a>
-            <a href="medical.html">🏥 Royal Rock Medicals</a>
-            <a href="helpful-content.html">📚 Resources</a>
-            <a href="trust-guarantee.html">⭐ Trust</a>
+            <a href="affiliate.html">Herbal Affiliate</a>
+            <a href="affiliate-login.html">Login</a>
         </div>
-        <div class="nav-buttons">
-            <a href="affiliate-login.html" class="btn-login"><i class="fas fa-user"></i> Login</a>
-            <div class="mobile-menu" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </div>
-    <div class="mobile-nav" id="mobileNav">
-        <a href="index.html">Home</a>
-        <a href="affiliate.html">Herbal Affiliate</a>
-        <a href="restaurant.html">Royal Rock Dining</a>
-        <a href="medical.html">Royal Rock Medicals</a>
-        <a href="helpful-content.html">Resources</a>
-        <a href="trust-guarantee.html">Trust</a>
-        <a href="affiliate-login.html">Login</a>
     </div>
 </nav>
 
-<section class="register-section reveal">
-    <div class="container">
-        <div class="register-container">
-            <div class="register-info">
-                <h1>Become an Affiliate</h1>
-                <div class="qualification-badge">
-                    <i class="fas fa-check-circle"></i>
-                    <span>You must have purchased 100,000 CFA+ to register</span>
-                </div>
-                <div class="benefits">
-                    <h3>What You Get:</h3>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> 12% commission on all sales</li>
-                        <li><i class="fas fa-check-circle"></i> 6% on sub-affiliate sales</li>
-                        <li><i class="fas fa-check-circle"></i> 3% on 2nd sub-affiliate sales</li>
-                        <li><i class="fas fa-check-circle"></i> Monthly bonus opportunities</li>
-                        <li><i class="fas fa-check-circle"></i> Free marketing materials</li>
-                        <li><i class="fas fa-check-circle"></i> Dedicated affiliate support</li>
-                        <li><i class="fas fa-check-circle"></i> Weekly payouts via Mobile Money</li>
-                    </ul>
-                </div>
-                <!-- Add this right after the referral code input field -->
-<div class="form-group">
-    <label>Referral Code *</label>
-    <input type="text" id="regReferralCode" placeholder="Enter referral code from existing affiliate" required>
-    <small id="referralHelper"></small>
-</div>
-
-<script>
-// ============ REGISTRATION WITH LOCAL DATABASE ============
-const registerForm = document.getElementById('affiliateRegisterForm');
-if (registerForm) {
-    registerForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const fullName = document.getElementById('regFullName').value;
-        const email = document.getElementById('regEmail').value;
-        const phone = document.getElementById('regPhone').value;
-        const username = document.getElementById('regUsername').value;
-        const referralCode = document.getElementById('regReferralCode').value;
-        const password = document.getElementById('regPassword').value;
-        const confirmPassword = document.getElementById('regConfirmPassword').value;
-        
-        // Validation
-        if (password !== confirmPassword) {
-            showNotification('Passwords do not match!', 'error');
-            return;
-        }
-        
-        // Check if user already exists
-        const existingUserByEmail = await localDB.getUserByEmail(email);
-        if (existingUserByEmail) {
-            showNotification('Email already registered!', 'error');
-            return;
-        }
-        
-        const existingUserByUsername = await localDB.getUserByUsername(username);
-        if (existingUserByUsername) {
-            showNotification('Username already taken!', 'error');
-            return;
-        }
-        
-        // Get user count to check if this is first user
-        const userCount = await localDB.getUserCount();
-        let isFirstUser = (userCount === 0);
-        let referrer = null;
-        
-        // If NOT first user, validate referral code
-        if (!isFirstUser) {
-            if (!referralCode) {
-                showNotification('Referral code is required!', 'error');
-                return;
-            }
-            
-            referrer = await localDB.getUserByReferralCode(referralCode);
-            if (!referrer) {
-                showNotification('Invalid referral code! Please enter a valid code.', 'error');
-                return;
-            }
-        }
-        
-        // Generate new referral code for this user
-        const newReferralCode = generateReferralCode();
-        
-        // Create new user
-        const newUser = await localDB.createUser({
-            email: email,
-            username: username,
-            full_name: fullName,
-            phone: phone,
-            password: btoa(password),
-            referral_code: newReferralCode,
-            referred_by: referrer ? referrer.id : null,
-            has_purchased: false,
-            total_purchased: 0
-        });
-        
-        // Create affiliate record
-        await localDB.createAffiliate({
-            id: newUser.id,
-            referral_code: newReferralCode,
-            total_earnings: 0,
-            total_sales: 0,
-            total_referrals: 0,
-            available_balance: 0,
-            joined_at: new Date().toISOString()
-        });
-        
-        // If referred by someone, add commission for referrer
-        if (referrer) {
-            await localDB.createCommission({
-                affiliate_id: referrer.id,
-                amount: 5000,
-                type: 'referral_bonus',
-                description: `New affiliate registration: ${email}`
-            });
-            
-            // Update referrer's stats
-            const referrerAffiliate = await localDB.getAffiliateByUserId(referrer.id);
-            if (referrerAffiliate) {
-                await localDB.updateAffiliate(referrer.id, {
-                    total_referrals: (referrerAffiliate.total_referrals || 0) + 1,
-                    total_earnings: (referrerAffiliate.total_earnings || 0) + 5000,
-                    available_balance: (referrerAffiliate.available_balance || 0) + 5000
-                });
-            }
-        }
-        
-        showNotification(`✅ Registration successful! Your referral code is: ${newReferralCode}`, 'success');
-        
-        // Auto login
-        setSession(newUser, true);
-        
-        setTimeout(() => {
-            window.location.href = 'affiliate-dashboard.html';
-        }, 2000);
-    });
-}
-</script>
+<section class="register-section">
+    <div class="register-container">
+        <div class="register-info">
+            <h1>Become an Affiliate</h1>
+            <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 10px; margin-bottom: 20px;">
+                <i class="fas fa-check-circle"></i> <strong>First referral code: RRFOUNDER2025</strong>
             </div>
-            <div class="register-form">
-                <h2>Affiliate Registration</h2>
-                <form id="affiliateRegisterForm">
-                    <div class="form-group">
-                        <label>Full Name *</label>
-                        <input type="text" id="regFullName" required>
-                    </div>
+            
+            <!-- New Commission Chart -->
+            <div class="commission-chart">
+                <h3><i class="fas fa-chart-line"></i> Multi-Level Commission</h3>
+                <div class="commission-level">
+                    <span class="level">Level 1 (Direct Referral)</span>
+                    <span class="percent">12%</span>
+                </div>
+                <div class="commission-level">
+                    <span class="level">Level 2 (Second Level)</span>
+                    <span class="percent">6%</span>
+                </div>
+                <div class="commission-level">
+                    <span class="level">Level 3 (Third Level)</span>
+                    <span class="percent">3%</span>
+                </div>
+                <div class="commission-level">
+                    <span class="level">Level 4 (Fourth Level)</span>
+                    <span class="percent">1%</span>
+                </div>
+            </div>
+            
+            <div class="benefits">
+                <h3>What You Get:</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> 12% commission on direct sales</li>
+                    <li><i class="fas fa-check-circle"></i> 6% on second-level referrals</li>
+                    <li><i class="fas fa-check-circle"></i> 3% on third-level referrals</li>
+                    <li><i class="fas fa-check-circle"></i> 1% on fourth-level referrals</li>
+                    <li><i class="fas fa-check-circle"></i> Monthly bonus opportunities</li>
+                    <li><i class="fas fa-check-circle"></i> Weekly payouts via Mobile Money</li>
+                </ul>
+            </div>
+        </div>
+        <div class="register-form">
+            <h2>Affiliate Registration</h2>
+            <form id="affiliateRegisterForm">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="regFullName" required>
+                </div>
+                <div class="form-row">
                     <div class="form-group">
                         <label>Email Address *</label>
                         <input type="email" id="regEmail" required>
-                        <small>Must match purchase email</small>
                     </div>
                     <div class="form-group">
                         <label>Phone Number *</label>
                         <input type="tel" id="regPhone" required>
                     </div>
+                </div>
+                <div class="form-row">
                     <div class="form-group">
                         <label>Username *</label>
                         <input type="text" id="regUsername" required>
                     </div>
                     <div class="form-group">
                         <label>Referral Code *</label>
-                        <input type="text" id="regReferralCode" placeholder="Enter referral code from existing affiliate" required>
-                        <small>You must have a referral code to register</small>
+                        <input type="text" id="regReferralCode" placeholder="Enter referral code" required>
+                        <small class="helper-text" id="referralHelper"></small>
                     </div>
+                </div>
+                <div class="form-row">
                     <div class="form-group">
                         <label>Password *</label>
                         <input type="password" id="regPassword" required>
@@ -216,32 +257,342 @@ if (registerForm) {
                         <label>Confirm Password *</label>
                         <input type="password" id="regConfirmPassword" required>
                     </div>
-                    <div class="form-group checkbox">
-                        <input type="checkbox" id="termsCheckbox" required>
-                        <label>I agree to the <a href="#">Terms and Conditions</a></label>
-                    </div>
-                    <button type="submit" class="btn-primary">Register as Affiliate</button>
-                </form>
-                <div id="registerStatus"></div>
-                <p class="login-link">Already have an account? <a href="affiliate-login.html">Login here</a></p>
-            </div>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="termsCheckbox" required>
+                    <label>I agree to the Terms and Conditions</label>
+                </div>
+                <button type="submit" class="btn-primary">Register as Affiliate</button>
+            </form>
+            <div id="registerStatus" style="margin-top: 15px; text-align: center;"></div>
+            <p class="login-link">Already have an account? <a href="affiliate-login.html">Login here</a></p>
         </div>
     </div>
-</section>
+</div>
+
 <script>
-// Emergency bypass - Press Ctrl+Shift+B to auto-fill bypass code
-document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && e.shiftKey && e.key === 'B') {
-        const referralInput = document.getElementById('regReferralCode');
-        if (referralInput) {
-            referralInput.value = 'BYPASS_FIRST_USER';
-            referralInput.style.borderColor = '#22c55e';
-            alert('Bypass code activated! You can register as first user.');
-        }
+// ============ COMPLETE WORKING LOCAL DATABASE ============
+
+// Commission rates
+const COMMISSION_RATES = {
+    LEVEL1: 0.12,  // 12%
+    LEVEL2: 0.06,  // 6%
+    LEVEL3: 0.03,  // 3%
+    LEVEL4: 0.01   // 1%
+};
+
+// Initialize database
+function initDatabase() {
+    if (!localStorage.getItem('localUsers')) {
+        const firstUser = {
+            id: 1,
+            email: 'founder@royalrock.com',
+            username: 'founder',
+            full_name: 'Company Founder',
+            phone: '237653376334',
+            password: btoa('123456'),
+            referral_code: 'RRFOUNDER2025',
+            referred_by: null,
+            upline_id: null,
+            level: 0,
+            has_purchased: true,
+            total_purchased: 100000,
+            created_at: new Date().toISOString()
+        };
+        
+        const firstAffiliate = {
+            id: 1,
+            referral_code: 'RRFOUNDER2025',
+            level1_earnings: 0,
+            level2_earnings: 0,
+            level3_earnings: 0,
+            level4_earnings: 0,
+            total_earnings: 0,
+            total_sales: 0,
+            total_referrals: 0,
+            available_balance: 0,
+            joined_at: new Date().toISOString()
+        };
+        
+        localStorage.setItem('localUsers', JSON.stringify([firstUser]));
+        localStorage.setItem('localAffiliates', JSON.stringify([firstAffiliate]));
+        localStorage.setItem('localOrders', JSON.stringify([]));
+        localStorage.setItem('localCommissions', JSON.stringify([]));
+        localStorage.setItem('localReferralTree', JSON.stringify({}));
+        
+        console.log('Database initialized! First user created with referral code: RRFOUNDER2025');
+        console.log('Commission rates: Level1=12%, Level2=6%, Level3=3%, Level4=1%');
     }
-});
+}
+
+initDatabase();
+
+function showNotification(message, type) {
+    const statusDiv = document.getElementById('registerStatus');
+    if (statusDiv) {
+        statusDiv.innerHTML = `<div style="padding: 10px; border-radius: 10px; background: ${type === 'success' ? 'rgba(34,197,94,0.2)' : 'rgba(239,68,68,0.2)'}; color: ${type === 'success' ? '#22c55e' : '#ef4444'};">${message}</div>`;
+        setTimeout(() => {
+            statusDiv.innerHTML = '';
+        }, 5000);
+    }
+}
+
+function generateReferralCode() {
+    return 'RR' + Math.random().toString(36).substring(2, 8).toUpperCase();
+}
+
+// Function to calculate and distribute multi-level commissions
+async function distributeCommissions(saleAmount, buyerId, productPrice) {
+    const users = JSON.parse(localStorage.getItem('localUsers') || '[]');
+    const affiliates = JSON.parse(localStorage.getItem('localAffiliates') || '[]');
+    const commissions = JSON.parse(localStorage.getItem('localCommissions') || '[]');
+    
+    let currentUserId = buyerId;
+    let level = 1;
+    const commissionAmount = saleAmount; // This is the product price that earns commission
+    
+    while (currentUserId && level <= 4) {
+        // Find the upline (who referred this user)
+        const currentUser = users.find(u => u.id === currentUserId);
+        if (!currentUser || !currentUser.referred_by) break;
+        
+        const uplineId = currentUser.referred_by;
+        const upline = users.find(u => u.id === uplineId);
+        const uplineAffiliate = affiliates.find(a => a.id === uplineId);
+        
+        if (upline && uplineAffiliate) {
+            let commissionPercent = 0;
+            let earningField = '';
+            
+            switch(level) {
+                case 1:
+                    commissionPercent = COMMISSION_RATES.LEVEL1;
+                    earningField = 'level1_earnings';
+                    break;
+                case 2:
+                    commissionPercent = COMMISSION_RATES.LEVEL2;
+                    earningField = 'level2_earnings';
+                    break;
+                case 3:
+                    commissionPercent = COMMISSION_RATES.LEVEL3;
+                    earningField = 'level3_earnings';
+                    break;
+                case 4:
+                    commissionPercent = COMMISSION_RATES.LEVEL4;
+                    earningField = 'level4_earnings';
+                    break;
+            }
+            
+            const earnedAmount = productPrice * commissionPercent;
+            
+            if (earnedAmount > 0) {
+                // Update affiliate earnings
+                uplineAffiliate[earningField] = (uplineAffiliate[earningField] || 0) + earnedAmount;
+                uplineAffiliate.total_earnings = (uplineAffiliate.total_earnings || 0) + earnedAmount;
+                uplineAffiliate.available_balance = (uplineAffiliate.available_balance || 0) + earnedAmount;
+                
+                // Record commission
+                commissions.push({
+                    id: Date.now() + level,
+                    affiliate_id: uplineId,
+                    amount: earnedAmount,
+                    level: level,
+                    percent: commissionPercent * 100,
+                    type: 'commission',
+                    description: `${level}% commission from level ${level} referral sale (${productPrice} CFA product)`,
+                    created_at: new Date().toISOString()
+                });
+            }
+        }
+        
+        currentUserId = uplineId;
+        level++;
+    }
+    
+    localStorage.setItem('localAffiliates', JSON.stringify(affiliates));
+    localStorage.setItem('localCommissions', JSON.stringify(commissions));
+}
+
+// Check if this is first user
+function checkFirstUser() {
+    const users = JSON.parse(localStorage.getItem('localUsers') || '[]');
+    const helperText = document.getElementById('referralHelper');
+    if (users.length === 0) {
+        helperText.innerHTML = '✓ You are the first user! No referral code needed.';
+        document.getElementById('regReferralCode').required = false;
+        document.getElementById('regReferralCode').placeholder = 'First user - leave blank';
+    } else {
+        helperText.innerHTML = 'Enter the referral code from the person who invited you (12% for them, 6% for their upline, 3%, 1%)';
+    }
+}
+checkFirstUser();
+
+// ============ REGISTRATION FORM HANDLER ============
+const registerForm = document.getElementById('affiliateRegisterForm');
+
+if (registerForm) {
+    registerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        console.log('Form submitted!');
+        
+        // Get values
+        const fullName = document.getElementById('regFullName').value;
+        const email = document.getElementById('regEmail').value;
+        const phone = document.getElementById('regPhone').value;
+        const username = document.getElementById('regUsername').value;
+        const referralCode = document.getElementById('regReferralCode').value;
+        const password = document.getElementById('regPassword').value;
+        const confirmPassword = document.getElementById('regConfirmPassword').value;
+        
+        // Validate
+        if (!fullName || !email || !phone || !username || !password) {
+            showNotification('Please fill all required fields', 'error');
+            return;
+        }
+        
+        if (password !== confirmPassword) {
+            showNotification('Passwords do not match!', 'error');
+            return;
+        }
+        
+        if (password.length < 4) {
+            showNotification('Password must be at least 4 characters', 'error');
+            return;
+        }
+        
+        // Get existing data
+        let users = JSON.parse(localStorage.getItem('localUsers') || '[]');
+        let affiliates = JSON.parse(localStorage.getItem('localAffiliates') || '[]');
+        
+        // Check if email exists
+        if (users.find(u => u.email === email)) {
+            showNotification('Email already registered!', 'error');
+            return;
+        }
+        
+        // Check if username exists
+        if (users.find(u => u.username === username)) {
+            showNotification('Username already taken!', 'error');
+            return;
+        }
+        
+        // Check if this is first user
+        let isFirstUser = (users.length === 0);
+        let referrer = null;
+        let uplineId = null;
+        let level = 1;
+        
+        if (!isFirstUser) {
+            if (!referralCode) {
+                showNotification('Referral code is required!', 'error');
+                return;
+            }
+            
+            referrer = users.find(u => u.referral_code === referralCode);
+            if (!referrer) {
+                showNotification('Invalid referral code! Please enter a valid code.', 'error');
+                return;
+            }
+            
+            uplineId = referrer.id;
+            level = (referrer.level || 0) + 1;
+        }
+        
+        // Generate new referral code
+        const newReferralCode = generateReferralCode();
+        
+        // Create new user
+        const newId = users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1;
+        const newUser = {
+            id: newId,
+            email: email,
+            username: username,
+            full_name: fullName,
+            phone: phone,
+            password: btoa(password),
+            referral_code: newReferralCode,
+            referred_by: uplineId,
+            upline_id: uplineId,
+            level: level,
+            has_purchased: false,
+            total_purchased: 0,
+            created_at: new Date().toISOString()
+        };
+        
+        users.push(newUser);
+        localStorage.setItem('localUsers', JSON.stringify(users));
+        
+        // Create affiliate record
+        affiliates.push({
+            id: newId,
+            referral_code: newReferralCode,
+            level1_earnings: 0,
+            level2_earnings: 0,
+            level3_earnings: 0,
+            level4_earnings: 0,
+            total_earnings: 0,
+            total_sales: 0,
+            total_referrals: 0,
+            available_balance: 0,
+            joined_at: new Date().toISOString()
+        });
+        localStorage.setItem('localAffiliates', JSON.stringify(affiliates));
+        
+        // If referred by someone, add referral bonus
+        if (referrer) {
+            let commissions = JSON.parse(localStorage.getItem('localCommissions') || '[]');
+            
+            // Update referrer's referral count
+            const referrerAffiliateIndex = affiliates.findIndex(a => a.id === referrer.id);
+            if (referrerAffiliateIndex !== -1) {
+                affiliates[referrerAffiliateIndex].total_referrals = (affiliates[referrerAffiliateIndex].total_referrals || 0) + 1;
+                
+                // Level 1 commission (12%) for direct referral signup bonus
+                const signupBonus = 5000; // 5000 CFA signup bonus
+                affiliates[referrerAffiliateIndex].level1_earnings = (affiliates[referrerAffiliateIndex].level1_earnings || 0) + signupBonus;
+                affiliates[referrerAffiliateIndex].total_earnings = (affiliates[referrerAffiliateIndex].total_earnings || 0) + signupBonus;
+                affiliates[referrerAffiliateIndex].available_balance = (affiliates[referrerAffiliateIndex].available_balance || 0) + signupBonus;
+                
+                commissions.push({
+                    id: Date.now(),
+                    affiliate_id: referrer.id,
+                    amount: signupBonus,
+                    level: 1,
+                    percent: 12,
+                    type: 'referral_bonus',
+                    description: `12% referral bonus for recruiting ${email}`,
+                    created_at: new Date().toISOString()
+                });
+                
+                localStorage.setItem('localAffiliates', JSON.stringify(affiliates));
+                localStorage.setItem('localCommissions', JSON.stringify(commissions));
+            }
+        }
+        
+        console.log('User created:', newUser);
+        console.log('Commission rates: Level1=12%, Level2=6%, Level3=3%, Level4=1%');
+        
+        showNotification(`✅ Registration successful! Your referral code is: ${newReferralCode}`, 'success');
+        
+        // Auto login - save session
+        const sessionData = {
+            user: newUser,
+            expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
+        };
+        localStorage.setItem('royalRockSession', JSON.stringify(sessionData));
+        
+        // Redirect to dashboard
+        setTimeout(() => {
+            window.location.href = 'affiliate-dashboard.html';
+        }, 2000);
+    });
+} else {
+    console.error('Form not found!');
+}
+
+console.log('Registration page loaded with commission structure: 12% -> 6% -> 3% -> 1%');
 </script>
-<script src="supabase-config.js"></script>
-<script src="script.js"></script>
+
 </body>
 </html>
