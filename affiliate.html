@@ -264,6 +264,45 @@
         </div>
     </div>
 </footer>
+<!-- Products Section - Now loads from database -->
+<section id="products" class="products-showcase reveal">
+    <div class="container">
+        <h2 class="section-title">Our <span>Best Sellers</span></h2>
+        <div class="products-grid" id="affiliateProductsGrid">
+            <!-- Products will load dynamically from database -->
+        </div>
+    </div>
+</section>
+
+<script>
+// Load products dynamically
+function loadAffiliateProducts() {
+    const products = JSON.parse(localStorage.getItem('royalRockProducts') || '[]');
+    const herbalProducts = products.filter(p => p.category === 'herbal');
+    const container = document.getElementById('affiliateProductsGrid');
+    
+    if (container) {
+        container.innerHTML = herbalProducts.map(product => `
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}" onerror="this.src='https://placehold.co/300x220/1a1a2e/c9a03d?text=${product.name}'">
+                </div>
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <div class="product-price">${product.price.toLocaleString()} CFA</div>
+                    <div class="product-commission">You earn: ${(product.price * 0.15).toLocaleString()} CFA</div>
+                    <a href="affiliate-shop.html" class="btn-small">Shop Now</a>
+                </div>
+            </div>
+        `).join('');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadAffiliateProducts();
+});
+</script>
 
 <script src="supabase-config.js"></script>
 <script src="script.js"></script>

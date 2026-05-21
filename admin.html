@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Royal Rock</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .admin-container {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid rgba(201,160,61,0.3);
+        }
+        .admin-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .admin-logo h1 {
+            color: #c9a03d;
+            font-family: 'Playfair Display', serif;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: white;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            color: white;
+        }
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #c9a03d, #ffd700);
+            border: none;
+            border-radius: 10px;
+            color: #1a1a2e;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .error {
+            color: #ef4444;
+            text-align: center;
+            margin-top: 15px;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-link a {
+            color: #c9a03d;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-logo">
+            <h1>Royal Rock</h1>
+            <p>Admin Login</p>
+        </div>
+        <form id="adminLoginForm">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="adminUser" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="adminPass" required>
+            </div>
+            <button type="submit" class="btn-login">Login</button>
+        </form>
+        <div id="loginError" class="error"></div>
+        <div class="back-link">
+            <a href="index.html">← Back to Website</a>
+        </div>
+    </div>
+
+    <script>
+        // CHANGE THESE CREDENTIALS TO YOUR OWN
+        const ADMIN_USERNAME = "admin";
+        const ADMIN_PASSWORD = "RoyalRock2025";
+
+        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('adminUser').value;
+            const password = document.getElementById('adminPass').value;
+            
+            if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+                localStorage.setItem('adminLoggedIn', 'true');
+                localStorage.setItem('adminSessionExpiry', Date.now() + (8 * 3600000));
+                window.location.href = 'admin-dashboard.html';
+            } else {
+                document.getElementById('loginError').innerHTML = 'Invalid credentials!';
+            }
+        });
+    </script>
+</body>
+</html>

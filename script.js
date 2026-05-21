@@ -807,3 +807,71 @@ document.addEventListener('DOMContentLoaded', () => {
         if (Math.random() > 0.95) createExplosionEffect();
     });
 });
+// ============ PRODUCT MANAGEMENT SYSTEM ============
+
+// Initialize products in localStorage if not exists
+function initProductDatabase() {
+    if (!localStorage.getItem('royalRockProducts')) {
+        // Default products from your affiliate page
+        const defaultProducts = [
+            { id: 1, name: "Immune Boost Complex", category: "herbal", price: 35000, description: "Natural immune system support. Boosts your body's natural defenses.", image: "images/herbal1.jpg", stock: true, commission: 15, createdAt: new Date().toISOString() },
+            { id: 2, name: "Detox Wellness Tea", category: "herbal", price: 25000, description: "Organic detox tea bundle for natural cleansing and wellness.", image: "images/herbal2.jpg", stock: true, commission: 15, createdAt: new Date().toISOString() },
+            { id: 3, name: "Energy & Vitality Capsules", category: "herbal", price: 40000, description: "Natural energy boost for daily wellness and vitality.", image: "images/herbal3.jpg", stock: true, commission: 15, createdAt: new Date().toISOString() },
+            { id: 4, name: "Liver Health Formula", category: "herbal", price: 30000, description: "Natural support for liver health and detoxification.", image: "images/herbal4.jpg", stock: true, commission: 15, createdAt: new Date().toISOString() },
+            { id: 5, name: "Joint Care Complex", category: "herbal", price: 35000, description: "Natural joint support for mobility and flexibility.", image: "images/herbal5.jpg", stock: true, commission: 15, createdAt: new Date().toISOString() },
+            { id: 6, name: "Stress Relief Tincture", category: "herbal", price: 28000, description: "Natural calm and relaxation formula.", image: "images/herbal6.jpg", stock: true, commission: 15, createdAt: new Date().toISOString() }
+        ];
+        localStorage.setItem('royalRockProducts', JSON.stringify(defaultProducts));
+    }
+}
+
+// Get all products
+function getAllProducts() {
+    return JSON.parse(localStorage.getItem('royalRockProducts') || '[]');
+}
+
+// Get products by category
+function getProductsByCategory(category) {
+    const products = getAllProducts();
+    return products.filter(p => p.category === category);
+}
+
+// Update product (for admin)
+function updateProduct(productId, updates) {
+    let products = getAllProducts();
+    const index = products.findIndex(p => p.id === productId);
+    if (index !== -1) {
+        products[index] = { ...products[index], ...updates };
+        localStorage.setItem('royalRockProducts', JSON.stringify(products));
+        return true;
+    }
+    return false;
+}
+
+// Add new product (for admin)
+function addProduct(product) {
+    let products = getAllProducts();
+    const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+    const newProduct = { ...product, id: newId, createdAt: new Date().toISOString() };
+    products.push(newProduct);
+    localStorage.setItem('royalRockProducts', JSON.stringify(products));
+    return newProduct;
+}
+
+// Delete product (for admin)
+function deleteProduct(productId) {
+    let products = getAllProducts();
+    products = products.filter(p => p.id !== productId);
+    localStorage.setItem('royalRockProducts', JSON.stringify(products));
+    return true;
+}
+
+// Update your existing displayProducts function to use the database
+function loadProductsToAffiliatePage() {
+    const products = getAllProducts();
+    const herbalProducts = products.filter(p => p.category === 'herbal');
+    displayProductsOnPage(herbalProducts);
+}
+
+// Call this when page loads
+initProductDatabase();
