@@ -391,28 +391,139 @@ if (typeof supabase !== 'undefined' && window.supabase) {
            // Allow first user to register without referral code
 let referrer = null;
 let isFirstUser = false;
-
-// Check if any users exist in database
-const { count: userCount, error: countError } = await supabase
-    .from('users')
-    .select('*', { count: 'exact', head: true });
-
-if (userCount === 0 && referralCode === 'FIRST') {
-    isFirstUser = true;
-} else {
-    // Check if referral code exists
-    const { data: refData } = await supabase
-        .from('users')
-        .select('id, referral_code')
-        .eq('referral_code', referralCode)
-        .single();
-    
-    referrer = refData;
-    
-    if (!referrer && !isFirstUser) {
-        showNotification('Invalid referral code!', 'error');
-        return;
-    }
+// ============ AFFILIATE REGISTRATION (UPDATED - NO REFERRAL CODE NEEDED FOR FIRST USER) ============
+const registerForm = document.getElementById('affiliateRegisterForm');
+if (registerForm) {
+    registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const fullName = document.getElementById('regFullName').value;
+        const email = document.getElementById('regEmail').value;
+        const phone = document.getElementById('regPhone').value;
+        const username = document.getElementById('regUsername').value;
+        const referralCode = document.getElementById('regReferralCode').value;
+        const password = document.getElementById('regPassword').value;
+        const confirmPassword = document.getElementById('regConfirmPassword').value;
+        
+        // Check password match
+        if (password !== confirmPassword) {
+            showNotification('Passwords do not match!', 'error');
+            return;
+        }
+        
+        // Check if user already exists
+        const { data: existingUser, error: checkError } = await supabase
+            .from('users')
+            .select('email, username')
+            .or(`email.eq.${email},username.eq.${username}`);
+        
+        if (existingUser && existingUser.length > 0) {
+            showNotification('Email or username already exists!', 'error');
+            return;
+        }
+        
+        // Check if this is the FIRST user in the system
+        const { count: userCount, error: countError } = await supabase
+            .from('users')
+            .select('*', { count: 'exact', head: true });
+        
+        let isFirstUser = (userCount === 0);
+        let referrerId = null;
+        
+        // If NOT first user, validate referral code
+        if (!isFirstUser) {
+            if (!referralCode) {
+                showNotification('Referral code is required!', 'error');
+                return;
+            }
+            
+            const { data: referrer, error: refError } = await supabase
+                .from('users')
+                .select('id, referral_code')
+                .eq('referral_code', referralCode)
+                .single();
+            
+            if (!referrer) {
+                showNotification('Invalid referral code! Please enter a valid code.', 'error');
+                return;
+            }
+            
+            referrerId = referrer.id;
+        }
+        
+        // Generate new referral code for this user
+        const newReferralCode = 'RR' + Math.random().toString(36).substring(2, 8).toUpperCase();
+        
+        // Insert user
+        const { data: newUser, error: insertError } = await supabase
+            .from('users')
+            .insert([{
+                email: email,
+                username: username,
+                full_name: fullName,
+                phone: phone,
+                password: btoa(password),
+                referral_code: newReferralCode,
+                referred_by: referrerId,
+                has_purchased: false,
+                total_purchased: 0,
+                created_at: new Date().toISOString()
+            }])
+            .select()
+            .single();
+        
+        if (insertError) {
+            console.error('Insert error:', insertError);
+            showNotification('Registration failed: ' + insertError.message, 'error');
+            return;
+        }
+        
+        // Insert affiliate record
+        const { error: affiliateError } = await supabase
+            .from('affiliates')
+            .insert([{
+                id: newUser.id,
+                referral_code: newReferralCode,
+                total_earnings: 0,
+                total_sales: 0,
+                total_referrals: 0,
+                available_balance: 0,
+                joined_at: new Date().toISOString()
+            }]);
+        
+        if (affiliateError) {
+            console.error('Affiliate insert error:', affiliateError);
+        }
+        
+        // If referred by someone, add commission for referrer
+        if (referrerId) {
+            await supabase
+                .from('commissions')
+                .insert([{
+                    affiliate_id: referrerId,
+                    amount: 5000,
+                    type: 'referral_bonus',
+                    description: `New affiliate registration: ${email}`,
+                    created_at: new Date().toISOString()
+                }]);
+            
+            // Update referrer's totals
+            await supabase.rpc('increment_referral_count', { user_id: referrerId });
+        }
+        
+        showNotification(`Registration successful! Your referral code is: ${newReferralCode}`, 'success');
+        
+        // Auto login after registration
+        const sessionData = {
+            user: newUser,
+            expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
+        };
+        localStorage.setItem('royalRockSession', JSON.stringify(sessionData));
+        
+        setTimeout(() => {
+            window.location.href = 'affiliate-dashboard.html';
+        }, 2000);
+    });
 }
             
             // Check if user has purchased 100k+

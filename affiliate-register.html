@@ -64,6 +64,33 @@
                         <li><i class="fas fa-check-circle"></i> Weekly payouts via Mobile Money</li>
                     </ul>
                 </div>
+                <!-- Add this right after the referral code input field -->
+<div class="form-group">
+    <label>Referral Code *</label>
+    <input type="text" id="regReferralCode" placeholder="Enter referral code from existing affiliate" required>
+    <small id="referralHelper"></small>
+</div>
+
+<script>
+// Check if this is the first user and show helpful message
+async function checkFirstUser() {
+    if (typeof supabase !== 'undefined') {
+        const { count } = await supabase
+            .from('users')
+            .select('*', { count: 'exact', head: true });
+        
+        const helperText = document.getElementById('referralHelper');
+        if (count === 0) {
+            helperText.innerHTML = '<span style="color: #22c55e;">✓ You are the first user! No referral code needed.</span>';
+            document.getElementById('regReferralCode').required = false;
+            document.getElementById('regReferralCode').placeholder = 'First user - leave blank';
+        } else {
+            helperText.innerHTML = '<span style="color: #f59e0b;">Enter the referral code from the person who invited you</span>';
+        }
+    }
+}
+checkFirstUser();
+</script>
             </div>
             <div class="register-form">
                 <h2>Affiliate Registration</h2>
