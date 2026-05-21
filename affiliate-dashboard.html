@@ -191,6 +191,36 @@
             </div>
         </div>
     </div>
+    <button onclick="markAsPurchased()" class="btn-primary" style="background: #22c55e; margin-top: 20px;">
+    ✅ Mark as Purchased (Test Mode)
+</button>
+
+<script>
+function markAsPurchased() {
+    const session = localStorage.getItem('royalRockSession');
+    if (session) {
+        const sessionData = JSON.parse(session);
+        const userId = sessionData.user.id;
+        
+        let users = JSON.parse(localStorage.getItem('localUsers') || '[]');
+        let userIndex = users.findIndex(u => u.id === userId);
+        
+        if (userIndex !== -1) {
+            users[userIndex].has_purchased = true;
+            users[userIndex].total_purchased = 100000;
+            localStorage.setItem('localUsers', JSON.stringify(users));
+            
+            // Update session
+            sessionData.user.has_purchased = true;
+            sessionData.user.total_purchased = 100000;
+            localStorage.setItem('royalRockSession', JSON.stringify(sessionData));
+            
+            showNotification('✅ You now qualify as an affiliate! You can refer others.', 'success');
+            setTimeout(() => location.reload(), 1500);
+        }
+    }
+}
+</script>
     <!-- Add this to your dashboard stats section -->
 <div class="stats-cards">
     <div class="stat-card">
