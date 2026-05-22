@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Admin | Royal Rock Dining</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="admin-sidebar">
+    <div class="sidebar-header">
+        <h2>Royal<span>Rock</span></h2>
+        <p>Restaurant Admin</p>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="#" class="active" data-page="dashboard">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="#" data-page="menu">
+            <i class="fas fa-utensils"></i>
+            <span>Menu Management</span>
+        </a>
+        <a href="#" data-page="categories">
+            <i class="fas fa-tags"></i>
+            <span>Categories</span>
+        </a>
+        <a href="#" data-page="reservations">
+            <i class="fas fa-calendar-check"></i>
+            <span>Reservations</span>
+        </a>
+        <a href="#" data-page="orders">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Orders</span>
+        </a>
+        <a href="#" data-page="settings">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+        </a>
+    </nav>
+    <div class="sidebar-footer">
+        <a href="admin-login.html" class="logout-btn" id="logoutBtn">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+    </div>
+</aside>
+
+<!-- Main Content -->
+<main class="admin-main">
+    <header class="admin-header">
+        <div class="header-title">
+            <h1 id="pageTitle">Dashboard</h1>
+            <p id="pageSubtitle">Manage your restaurant menu and reservations</p>
+        </div>
+        <div class="header-actions">
+            <div class="admin-info">
+                <i class="fas fa-user-shield"></i>
+                <span>Admin</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Page -->
+    <div id="dashboard-page" class="page-content active">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-utensils"></i></div>
+                <div class="stat-info">
+                    <h3 id="totalMenuItems">0</h3>
+                    <p>Menu Items</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-tags"></i></div>
+                <div class="stat-info">
+                    <h3 id="totalCategories">0</h3>
+                    <p>Categories</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                <div class="stat-info">
+                    <h3 id="todayReservations">0</h3>
+                    <p>Today's Reservations</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="stat-info">
+                    <h3 id="monthlyRevenue">0 CFA</h3>
+                    <p>Monthly Revenue</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="recent-section">
+            <h3>Recent Reservations</h3>
+            <div class="recent-table" id="recentReservations"></div>
+        </div>
+    </div>
+
+    <!-- Menu Management Page -->
+    <div id="menu-page" class="page-content">
+        <div class="page-header">
+            <h2>Menu Items</h2>
+            <button class="btn-primary" onclick="openMenuModal()">
+                <i class="fas fa-plus"></i> Add New Item
+            </button>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="filter-bar">
+            <div class="filter-group">
+                <label>Filter by Category</label>
+                <select id="categoryFilter" class="filter-select">
+                    <option value="all">All Categories</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Search</label>
+                <input type="text" id="searchMenu" placeholder="Search menu items..." class="filter-input">
+            </div>
+        </div>
+
+        <!-- Menu Items Grid -->
+        <div class="items-grid" id="menuItemsGrid"></div>
+    </div>
+
+    <!-- Categories Page -->
+    <div id="categories-page" class="page-content">
+        <div class="page-header">
+            <h2>Menu Categories</h2>
+            <button class="btn-primary" onclick="openCategoryModal()">
+                <i class="fas fa-plus"></i> Add Category
+            </button>
+        </div>
+        <div class="categories-grid" id="categoriesGrid"></div>
+    </div>
+
+    <!-- Reservations Page -->
+    <div id="reservations-page" class="page-content">
+        <div class="page-header">
+            <h2>Reservations</h2>
+            <div class="filter-group">
+                <select id="reservationStatusFilter" class="filter-select">
+                    <option value="all">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="confirmed">Confirmed</option>
+                    <option value="completed">Completed</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+        </div>
+        <div class="table-container">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Guest Name</th>
+                        <th>Phone</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Guests</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="reservationsTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Orders Page -->
+    <div id="orders-page" class="page-content">
+        <div class="page-header">
+            <h2>Orders</h2>
+            <div class="filter-group">
+                <select id="orderStatusFilter" class="filter-select">
+                    <option value="all">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="preparing">Preparing</option>
+                    <option value="ready">Ready</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+        </div>
+        <div class="table-container">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Order #</th>
+                        <th>Customer</th>
+                        <th>Items</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Settings Page -->
+    <div id="settings-page" class="page-content">
+        <div class="settings-grid">
+            <div class="settings-card">
+                <h3><i class="fas fa-percent"></i> Tax & Service Charge</h3>
+                <div class="form-group">
+                    <label>Tax Rate (%)</label>
+                    <input type="number" id="taxRate" step="0.5" value="5">
+                </div>
+                <div class="form-group">
+                    <label>Service Charge (%)</label>
+                    <input type="number" id="serviceCharge" step="0.5" value="10">
+                </div>
+                <button onclick="saveRestaurantSettings()" class="btn-primary">Save Settings</button>
+            </div>
+            <div class="settings-card">
+                <h3><i class="fas fa-clock"></i> Business Hours</h3>
+                <div class="form-group">
+                    <label>Opening Time</label>
+                    <input type="time" id="openTime" value="08:00">
+                </div>
+                <div class="form-group">
+                    <label>Closing Time</label>
+                    <input type="time" id="closeTime" value="22:00">
+                </div>
+                <button onclick="saveBusinessHours()" class="btn-primary">Save Hours</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Add/Edit Menu Item Modal -->
+<div id="menuModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="menuModalTitle">Add Menu Item</h3>
+            <button class="modal-close" onclick="closeMenuModal()">&times;</button>
+        </div>
+        <form id="menuItemForm">
+            <input type="hidden" id="menuItemId">
+            <div class="form-group">
+                <label>Item Name *</label>
+                <input type="text" id="itemName" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Category *</label>
+                    <select id="itemCategory" required></select>
+                </div>
+                <div class="form-group">
+                    <label>Price (CFA) *</label>
+                    <input type="number" id="itemPrice" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea id="itemDescription" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Item Image</label>
+                <div class="image-upload" onclick="document.getElementById('itemImageInput').click()">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Click to upload image</p>
+                </div>
+                <input type="file" id="itemImageInput" style="display:none" accept="image/*">
+                <div class="image-preview" id="itemImagePreview"></div>
+            </div>
+            <div class="form-group">
+                <label>Availability</label>
+                <select id="itemAvailable">
+                    <option value="true">Available</option>
+                    <option value="false">Out of Stock</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Is Featured?</label>
+                <select id="itemFeatured">
+                    <option value="false">No</option>
+                    <option value="true">Yes (Show on homepage)</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-primary">Save Item</button>
+        </form>
+    </div>
+</div>
+
+<!-- Add/Edit Category Modal -->
+<div id="categoryModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="categoryModalTitle">Add Category</h3>
+            <button class="modal-close" onclick="closeCategoryModal()">&times;</button>
+        </div>
+        <form id="categoryForm">
+            <input type="hidden" id="categoryId">
+            <div class="form-group">
+                <label>Category Name *</label>
+                <input type="text" id="categoryName" required>
+            </div>
+            <div class="form-group">
+                <label>Category Icon</label>
+                <select id="categoryIcon">
+                    <option value="fa-utensils">🍽️ Utensils</option>
+                    <option value="fa-hamburger">🍔 Hamburger</option>
+                    <option value="fa-pizza-slice">🍕 Pizza</option>
+                    <option value="fa-fish">🐟 Fish</option>
+                    <option value="fa-carrot">🥕 Carrot</option>
+                    <option value="fa-coffee">☕ Coffee</option>
+                    <option value="fa-wine-bottle">🍷 Wine</option>
+                    <option value="fa-cocktail">🍹 Cocktail</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-primary">Save Category</button>
+        </form>
+    </div>
+</div>
+
+<script src="admin-script.js"></script>
+</body>
+</html>
